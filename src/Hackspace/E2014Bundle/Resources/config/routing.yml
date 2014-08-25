@@ -1,3 +1,3 @@
-hackspace_e2014_homepage:
-    path:     /hello/{name}
+_homepage:
+    path:     /
     defaults: { _controller: HackspaceE2014Bundle:Default:index }
