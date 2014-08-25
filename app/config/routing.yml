@@ -1,0 +1,4 @@
+hackspace_e2014:
+    resource: "@HackspaceE2014Bundle/Resources/config/routing.yml"
+    prefix:   /
+
