@@ -10,4 +10,14 @@ class DefaultController extends Controller
     {
         return $this->render('HackspaceE2014Bundle:Default:index.html.twig', []);
     }
+
+    public function candidatosAction()
+    {
+        return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', []);
+    }
+
+    public function infocandidatoAction()
+    {
+        return $this->render('HackspaceE2014Bundle:Default:infocandidato.html.twig', []);
+    }
 }

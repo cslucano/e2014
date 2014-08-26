@@ -1,3 +1,11 @@
 _homepage:
     path:     /
     defaults: { _controller: HackspaceE2014Bundle:Default:index }
+
+_candidatos:
+    path:     /candidatos
+    defaults: { _controller: HackspaceE2014Bundle:Default:candidatos }
+
+_infocandidato:
+    path:     /infocandidato
+    defaults: { _controller: HackspaceE2014Bundle:Default:infocandidato }
