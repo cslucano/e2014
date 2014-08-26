@@ -25,18 +25,17 @@
     </head>
     <body>
         <div id="main-wrapper">
+            {% include 'HackspaceE2014Bundle::header.html.twig' %}
 
-        {% include 'HackspaceE2014Bundle::header.html.twig' %}
+            <div id="page-content">
+                <div class="container">
+                    {% block container %}
+                    {% endblock %}
+                </div> <!-- end .container -->
+                {% include 'HackspaceE2014Bundle::success-stories.html.twig' %}
+            </div> <!-- end #page-content -->
 
-        <div id="page-content">
-            <div class="container">
-                {% block container %}
-                {% endblock %}
-            </div> <!-- end .container -->
-            {% include 'HackspaceE2014Bundle::success-stories.html.twig' %}
-        </div> <!-- end #page-content -->
-
-        {% include 'HackspaceE2014Bundle::footer.html.twig' %}
+            {% include 'HackspaceE2014Bundle::footer.html.twig' %}
         </div> <!-- end #main-wrapper -->
 
         <!-- Scripts -->
