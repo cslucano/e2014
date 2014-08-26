@@ -1,14 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
         <title>
             {% block title %}
                 Elecciones 2014
             {% endblock %}
         </title>
+
+        <!-- Stylesheets -->
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/flexslider.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+
+        <!--[if IE 9]>
+        <script src="js/media.match.min.js"></script>
+        <![endif]-->
     </head>
     <body>
-        {% block container %}
-        {% endblock %}
+        <div id="main-wrapper">
+
+        {% include 'HackspaceE2014Bundle::header.html.twig' %}
+
+        <div id="page-content">
+            <div class="container">
+                {% block container %}
+                {% endblock %}
+            </div> <!-- end .container -->
+            {% include 'HackspaceE2014Bundle::success-stories.html.twig' %}
+        </div> <!-- end #page-content -->
+
+        {% include 'HackspaceE2014Bundle::footer.html.twig' %}
+        </div> <!-- end #main-wrapper -->
+
+        <!-- Scripts -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
+        <script src="js/maplace.min.js"></script>
+        <script src="js/jquery.ba-outside-events.min.js"></script>
+        <script src="js/jquery.responsive-tabs.js"></script>
+        <script src="js/jquery.flexslider-min.js"></script>
+        <script src="js/jquery.fitvids.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="js/jquery.inview.min.js"></script>
+        <script src="js/script.js"></script>
     </body>
 </html>
