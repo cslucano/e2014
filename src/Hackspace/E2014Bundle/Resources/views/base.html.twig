@@ -25,14 +25,15 @@
     </head>
     <body>
         <div id="main-wrapper">
-            {% include 'HackspaceE2014Bundle::header.html.twig' %}
+            <header id="header" class="header-style-1">
+                {% block header %}
+                    {% include 'HackspaceE2014Bundle::header.html.twig' %}
+                {% endblock %}
+            </header> <!-- end #header -->
 
             <div id="page-content">
-                <div class="container">
-                    {% block container %}
+                    {% block page_content %}
                     {% endblock %}
-                </div> <!-- end .container -->
-                {% include 'HackspaceE2014Bundle::success-stories.html.twig' %}
             </div> <!-- end #page-content -->
 
             {% include 'HackspaceE2014Bundle::footer.html.twig' %}
