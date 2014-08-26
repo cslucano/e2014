@@ -37,9 +37,10 @@ class BasicQueryType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Hackspace\E2014Bundle\Entity\BasicQuery'
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'Hackspace\E2014Bundle\Entity\BasicQuery',
+            'csrf_protection' => false,
+        ]);
     }
 
     /**
