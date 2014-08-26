@@ -7,7 +7,16 @@
 {% block header %}
     {{ parent() }}
 
-    {% include 'HackspaceE2014Bundle::header-page-title.html.twig' %}
+    <div class="header-page-title">
+        <div class="container">
+            <h1>Available Jobs <small>(350)</small></h1>
+
+            <ul class="breadcrumbs">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Jobs</a></li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
 
 {% block page_content %}
