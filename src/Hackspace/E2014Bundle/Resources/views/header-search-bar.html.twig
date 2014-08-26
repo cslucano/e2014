@@ -2,19 +2,19 @@
     <div class="container">
         <form>
             <div class="basic-form clearfix">
-                <a href="#" class="toggle"><span></span></a>
+                {#<a href="#" class="toggle"><span></span></a>#}
 
                 <div class="hsb-input-1">
-                    <input type="text" class="form-control" placeholder="I'm looking for a ...">
+                    {{ form_widget(form.query) }}
                 </div>
 
-                <div class="hsb-text-1">in</div>
+                <div class="hsb-text-1">en</div>
 
                 <div class="hsb-container">
                     <div class="hsb-input-2">
-                        <input type="text" class="form-control" placeholder="Location">
+                        {{ form_widget(form.location) }}
                     </div>
-
+                    {#
                     <div class="hsb-select">
                         <select class="form-control">
                             <option value="0">Select Category</option>
@@ -24,13 +24,16 @@
                             <option value="">Category</option>
                         </select>
                     </div>
+                    #}
                 </div>
+                {{ form_rest(form) }}
 
                 <div class="hsb-submit">
-                    <input type="submit" class="btn btn-default btn-block" value="Search">
+                    <input type="submit" class="btn btn-default btn-block" value="Buscar">
                 </div>
             </div>
 
+            {#
             <div class="advanced-form">
                 <div class="container">
                     <div class="row">
@@ -90,6 +93,7 @@
                     </div>
                 </div>
             </div>
+            #}
         </form>
     </div>
 </div> <!-- end .header-search-bar -->

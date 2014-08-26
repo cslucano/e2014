@@ -7,7 +7,10 @@
 {% block header %}
     {{ parent() }}
 
-    {% include 'HackspaceE2014Bundle::header-search-bar.html.twig' %}
+    {{ include(
+        'HackspaceE2014Bundle::header-search-bar.html.twig',
+        { 'form' : form }
+    ) }}
 
     {% include 'HackspaceE2014Bundle::header-banner.html.twig' %}
 {% endblock %}

@@ -1450,7 +1450,7 @@ input[type="button"].btn-block {
 }
 
 #header .header-search-bar .hsb-input-1 {
-	width: 35%;
+	width: 50%;
 }
 
 #header .header-search-bar .hsb-text-1 {
@@ -1460,13 +1460,13 @@ input[type="button"].btn-block {
 }
 
 #header .header-search-bar .hsb-container {
-	width: 50%;
+	width: 35%;
 }
 
 #header .header-search-bar .hsb-container .hsb-input-2,
 #header .header-search-bar .hsb-container .hsb-select {
 	float: left;
-	width: 50%;
+	width: 100%;
 }
 
 #header .header-search-bar .hsb-container .hsb-select {

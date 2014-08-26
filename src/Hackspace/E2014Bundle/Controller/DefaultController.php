@@ -2,13 +2,19 @@
 
 namespace Hackspace\E2014Bundle\Controller;
 
+use Hackspace\E2014Bundle\Entity\BasicQuery;
+use Hackspace\E2014Bundle\Form\BasicQueryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('HackspaceE2014Bundle:Default:index.html.twig', []);
+        $form = $this->createForm(new BasicQueryType(), new BasicQuery());
+
+        return $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     public function candidatosAction()
