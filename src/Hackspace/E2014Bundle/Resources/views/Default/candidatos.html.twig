@@ -57,6 +57,80 @@
                     </ul>
                 </div>
 
+                {%  for candidato in candidatos %}
+                    <div class="jobs-item with-thumb">
+                        <div class="thumb"><img src="{{ asset('img/content/bus-00.png') }}" alt=""></div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="date">{{ candidato.dni }} <span>*</span></div>
+                        <h6 class="title"><a href="#">{{ candidato.cargoautoridad }} - {% if candidato.postulaubigeodis %}{{ candidato.postulaubigeodis }}{% elseif candidato.postulaubigeopro %}{{ candidato.postulaubigeopro }}{% else %}{{ candidato.postulaubigeodep }}{% endif %}</a></h6>
+                        <span class="meta">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</span>
+
+                        <ul class="top-btns">
+                            <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
+                            <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
+                            <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
+                        </ul>
+
+                        <p class="description">{{ candidato.formadesignacion }}. <a href="#" class="read-more">Más</a></p>
+
+                        <div class="content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
+
+                            <h5>Required Skills</h5>
+
+                            <div class="progress-bar toggle" data-progress="60">
+                                <a href="#" class="progress-bar-toggle"></a>
+                                <h6 class="progress-bar-title">Web Design</h6>
+                                <div class="progress-bar-inner"><span></span></div>
+                                <div class="progress-bar-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
+                                </div>
+                            </div>
+
+                            <div class="progress-bar toggle" data-progress="60">
+                                <a href="#" class="progress-bar-toggle"></a>
+                                <h6 class="progress-bar-title">Development</h6>
+                                <div class="progress-bar-inner"><span></span></div>
+                                <div class="progress-bar-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
+                                </div>
+                            </div>
+
+                            <div class="progress-bar toggle" data-progress="60">
+                                <a href="#" class="progress-bar-toggle"></a>
+                                <h6 class="progress-bar-title">UI/UX</h6>
+                                <div class="progress-bar-inner"><span></span></div>
+                                <div class="progress-bar-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
+                                </div>
+                            </div>
+
+                            <h5>Additional Requirements</h5>
+
+                            <ul class="additional-requirements clearfix">
+                                <li>Work Permit</li>
+                                <li>5 Years Experience</li>
+                                <li>MBA</li>
+                                <li>Magento Certified</li>
+                                <li>Perfect Written &amp; Spoken English</li>
+                            </ul>
+
+                            <hr>
+
+                            <div class="clearfix">
+                                <a href="#" class="btn btn-default pull-left">Apply for this Job</a>
+
+                                <ul class="social-icons pull-right">
+                                    <li><span>Share</span></li>
+                                    <li><a href="#" class="btn btn-gray fa fa-facebook"></a></li>
+                                    <li><a href="#" class="btn btn-gray fa fa-twitter"></a></li>
+                                    <li><a href="#" class="btn btn-gray fa fa-google-plus"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
                 <div class="jobs-item with-thumb">
                     <div class="thumb"><img src="{{ asset('img/content/bus-00.png') }}" alt=""></div>
                     <div class="clearfix visible-xs"></div>

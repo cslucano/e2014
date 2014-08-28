@@ -14,9 +14,12 @@ fos_elastica:
                         postula_ubigeo_dis: ~
                         forma_designacion: ~
                         dni: ~
-                        appaterno: ~
-                        apmaterno: ~
-                        nombres: ~
+                        appaterno:
+                            boost: 10
+                        apmaterno:
+                            boost: 10
+                        nombres:
+                            boost: 10
                         fdn: ~
                         sexo: ~
                         email: ~

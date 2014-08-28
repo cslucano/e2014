@@ -45,7 +45,11 @@ class DefaultController extends Controller
 
         if($form->isValid())
         {
-            $candidatos = [];
+            $finder = $this->container->get('fos_elastica.finder.e2014.candidato');
+
+            /** @var BasicQuery $basicQuery */
+            $basicQuery = $form->getData();
+            $candidatos = $finder->find($basicQuery->getQuery());
 
             return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', [
                 'form' => $form->createView(),
