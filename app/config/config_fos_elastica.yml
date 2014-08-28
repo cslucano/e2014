@@ -1,0 +1,39 @@
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        e2014:
+            types:
+                candidato:
+                    mappings:
+                        org_pol: ~
+                        cargo_autoridad: ~
+                        postula_ubigeo: ~
+                        postula_ubigeo_dep: ~
+                        postula_ubigeo_pro: ~
+                        postula_ubigeo_dis: ~
+                        forma_designacion: ~
+                        dni: ~
+                        appaterno: ~
+                        apmaterno: ~
+                        nombres: ~
+                        fdn: ~
+                        sexo: ~
+                        email: ~
+                        nac_pais: ~
+                        nac_ubigeo: ~
+                        nac_ubigeo_dep: ~
+                        nac_ubigeo_pro: ~
+                        nac_ubigeo_dis: ~
+                        residencia: ~
+                        residencia_ubigeo: ~
+                        residencia_ubigeo_dep: ~
+                        residencia_ubigeo_pro: ~
+                        residencia_ubigeo_dis: ~
+                        residencia_tiempo: ~
+                    persistence:
+                        driver: orm
+                        model: Hackspace\E2014Bundle\Entity\Candidato
+                        provider: ~
+                        listener: ~
+                        finder: ~
