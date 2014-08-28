@@ -9,17 +9,20 @@ fos_elastica:
                         org_pol: ~
                         cargo_autoridad: ~
                         postula_ubigeo: ~
-                        postula_ubigeo_dep: ~
-                        postula_ubigeo_pro: ~
-                        postula_ubigeo_dis: ~
+                        postula_ubigeo_dep:
+                            boost: 10
+                        postula_ubigeo_pro:
+                            boost: 10
+                        postula_ubigeo_dis:
+                            boost: 10
                         forma_designacion: ~
                         dni: ~
                         appaterno:
-                            boost: 10
+                            boost: 5
                         apmaterno:
-                            boost: 10
+                            boost: 5
                         nombres:
-                            boost: 10
+                            boost: 5
                         fdn: ~
                         sexo: ~
                         email: ~

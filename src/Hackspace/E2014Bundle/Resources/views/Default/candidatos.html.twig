@@ -62,8 +62,14 @@
                         <div class="thumb"><img src="{{ asset('img/content/bus-00.png') }}" alt=""></div>
                         <div class="clearfix visible-xs"></div>
                         <div class="date">{{ candidato.dni }} <span>*</span></div>
-                        <h6 class="title"><a href="#">{{ candidato.cargoautoridad }} - {% if candidato.postulaubigeodis %}{{ candidato.postulaubigeodis }}{% elseif candidato.postulaubigeopro %}{{ candidato.postulaubigeopro }}{% else %}{{ candidato.postulaubigeodep }}{% endif %}</a></h6>
-                        <span class="meta">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</span>
+                        <h6 class="title">
+                            <a href="#">
+                                {{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}
+                            </a>
+                        </h6>
+                        <span class="meta">
+                            {{ candidato.cargoautoridad }} - {% if candidato.postulaubigeodis %}{{ candidato.postulaubigeodis }}{% elseif candidato.postulaubigeopro %}{{ candidato.postulaubigeopro }}{% else %}{{ candidato.postulaubigeodep }}{% endif %}
+                        </span>
 
                         <ul class="top-btns">
                             <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
