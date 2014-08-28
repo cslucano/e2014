@@ -9,11 +9,11 @@
 
     <div class="header-page-title">
         <div class="container">
-            <h1>Available Jobs <small>(350)</small></h1>
+            <h1>Candidatos encontrados <small>({{ candidatos|length }})</small></h1>
 
             <ul class="breadcrumbs">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Jobs</a></li>
+                <li><a href="{{ path('_homepage') }}">Inicio</a></li>
+                <li><a href="#">Candidatos</a></li>
             </ul>
         </div>
     </div>
@@ -22,13 +22,15 @@
 {% block page_content %}
     <div class="container">
         <div class="row">
-            {% include 'HackspaceE2014Bundle::candidatos-filter.html.twig' %}
+            {{  include('HackspaceE2014Bundle::candidatos-filter.html.twig', { 'form' : form })  }}
 
             <div class="col-sm-8 page-content">
+                {#
                 <div id="jobs-page-map" class="white-container"></div>
+                #}
 
                 <div class="title-lines">
-                    <h3 class="mt0">Available Jobs</h3>
+                    <h3 class="mt0">Candidatos Encontrados</h3>
                 </div>
 
                 <div class="clearfix mb30">
@@ -39,11 +41,9 @@
                     </ul>
 
                     <select class="form-control pull-left">
-                        <option value="">Sort By</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
+                        <option value="">Ordenar Por:</option>
+                        <option value="">Partido Político</option>
+                        <option value="">Cargo</option>
                     </select>
 
                     <ul class="pagination pull-right">

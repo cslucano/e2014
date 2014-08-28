@@ -6,12 +6,13 @@ use Hackspace\E2014Bundle\Entity\BasicQuery;
 use Hackspace\E2014Bundle\Form\BasicQueryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $form = $this->createForm(new BasicQueryType(), new BasicQuery());
+        $form = $this->getBasicQueryForm();
 
         $filter = [
             'cargo' => [
@@ -37,13 +38,39 @@ class DefaultController extends Controller
         return $response;
     }
 
-    public function candidatosAction()
+    public function candidatosAction(Request $request)
     {
-        return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', []);
+        $form = $this->getBasicQueryForm();
+        $form->handleRequest($request);
+
+        if($form->isValid())
+        {
+            $candidatos = [];
+
+            return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', [
+                'form' => $form->createView(),
+                'candidatos' => $candidatos,
+            ]);
+        }
+
+        $form = $this->getBasicQueryForm();
+        return $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
     }
 
     public function infocandidatoAction()
     {
         return $this->render('HackspaceE2014Bundle:Default:infocandidato.html.twig', []);
+    }
+
+    public function getBasicQueryForm()
+    {
+        $form = $this->createForm(new BasicQueryType(), new BasicQuery(),[
+            'method' => 'GET',
+        ]);
+
+        return $form;
     }
 }

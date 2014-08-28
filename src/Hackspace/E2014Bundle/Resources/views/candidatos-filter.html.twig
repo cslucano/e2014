@@ -2,9 +2,10 @@
     <aside>
         <div class="white-container mb0">
             <div class="widget sidebar-widget jobs-search-widget">
-                <h5 class="widget-title">Search</h5>
+                <h5 class="widget-title">Buscar</h5>
 
                 <div class="widget-content">
+                    {#
                     <span>I'm looking for a ...</span>
 
                     <select class="form-control mt10 mb10">
@@ -14,19 +15,27 @@
                         <option value="">Category</option>
                         <option value="">Category</option>
                     </select>
+                    #}
 
-                    <span>in</span>
-
+                    {{ form_widget(form.query, { 'attr' : { 'class' : 'form-control mb10'}}) }}
+                    {#
                     <input type="text" class="form-control mt10" placeholder="Location">
+                    #}
 
+                    <span>en</span>
+
+                    {{ form_widget(form.location, { 'attr' : { 'class' : 'form-control mt10 mb15'}}) }}
+                    {#
+                    <input type="text" class="form-control mt10" placeholder="Location">
                     <input type="text" class="form-control mt15 mb15" placeholder="Industry / Role">
+                    #}
 
-                    <input type="submit" class="btn btn-default" value="Search">
+                    <input type="submit" class="btn btn-default" value="Buscar">
                 </div>
             </div>
 
             <div class="widget sidebar-widget jobs-filter-widget">
-                <h5 class="widget-title">Filter Results</h5>
+                <h5 class="widget-title">Refinar Búsqueda</h5>
 
                 <div class="widget-content">
                     <h6>By Region</h6>
