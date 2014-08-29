@@ -2,17 +2,20 @@
 
 namespace Hackspace\E2014Bundle\Controller;
 
-use Hackspace\E2014Bundle\Entity\BasicQuery;
-use Hackspace\E2014Bundle\Form\BasicQueryType;
+use Hackspace\E2014Bundle\Business\CSearcher;
+use Hackspace\E2014Bundle\Business\QFormHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $form = $this->getBasicQueryForm();
+        /** @var QFormHandler $qFormHandler */
+        $qFormHandler = $this->container->get('hackspace_e2014.q_form_handler');
+
+        $qFormHandler->handleRequest($request);
 
         $filter = [
             'cargo' => [
@@ -30,7 +33,7 @@ class DefaultController extends Controller
         $filterJson = json_encode($filter);
 
         $response = $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
-            'form' => $form->createView(),
+            'form' => $qFormHandler->form->createView(),
         ]);
 
         $response->headers->setCookie(new Cookie('filtro', $filterJson));
@@ -40,41 +43,30 @@ class DefaultController extends Controller
 
     public function candidatosAction(Request $request)
     {
-        $form = $this->getBasicQueryForm();
-        $form->handleRequest($request);
+        /** @var QFormHandler $qFormHandler */
+        $qFormHandler = $this->container->get('hackspace_e2014.q_form_handler');
 
-        if($form->isValid())
-        {
-            $finder = $this->container->get('fos_elastica.finder.e2014.candidato');
+        $qFormHandler->handleRequest($request);
 
-            /** @var BasicQuery $basicQuery */
-            $basicQuery = $form->getData();
-            $candidatos = $finder->find($basicQuery->getQuery());
+        if ($qFormHandler->is_valid) {
+            /** @var CSearcher $cSearcher */
+            $cSearcher = $this->container->get('hackspace_e2014.c_searcher');
+
+            $candidatos = $cSearcher->getCandidatos($qFormHandler->data);
 
             return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', [
-                'form' => $form->createView(),
+                'form' => $qFormHandler->form->createView(),
                 'candidatos' => $candidatos,
             ]);
         }
 
-        $form = $this->getBasicQueryForm();
         return $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
-            'form' => $form->createView(),
+            'form' => $qFormHandler->form->createView(),
         ]);
-
     }
 
     public function infocandidatoAction()
     {
         return $this->render('HackspaceE2014Bundle:Default:infocandidato.html.twig', []);
-    }
-
-    public function getBasicQueryForm()
-    {
-        $form = $this->createForm(new BasicQueryType(), new BasicQuery(),[
-            'method' => 'GET',
-        ]);
-
-        return $form;
     }
 }
