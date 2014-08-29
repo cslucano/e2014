@@ -53,10 +53,12 @@ class DefaultController extends Controller
             $cSearcher = $this->container->get('hackspace_e2014.c_searcher');
 
             $candidatos = $cSearcher->getCandidatos($qFormHandler->data, $request->get('page', 1));
+            $facets = $candidatos->getAdapter()->getFacets();
 
             return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', [
                 'form' => $qFormHandler->form->createView(),
                 'candidatos' => $candidatos,
+                'facets' => $facets,
             ]);
         }
 

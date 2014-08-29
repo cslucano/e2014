@@ -40,6 +40,21 @@
                 <h5 class="widget-title">Refinar Búsqueda</h5>
 
                 <div class="widget-content">
+                    {%  for key, facet in facets  %}
+                        <h6>Por {{ key }}</h6>
+
+                        <div>
+                            <ul class="filter-list">
+                                {% for term in facet.terms %}
+                                <li><a href="#">{{ term.term }} <span>({{ term.count }})</span></a></li>
+                                {% endfor %}
+                            </ul>
+
+                            <a href="#" class="toggle"></a>
+                        </div>
+                    {%  endfor  %}
+
+                    {#
                     <h6>By Region</h6>
 
                     <div>
@@ -145,7 +160,7 @@
                         <div class="first-value">$ <span>1</span></div>
                         <div class="last-value">$ <span>100000</span></div>
                     </div>
-
+                    #}
                     <input type="submit" class="btn btn-default mt30" value="Filter">
                 </div>
             </div>

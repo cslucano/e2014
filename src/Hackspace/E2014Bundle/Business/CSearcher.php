@@ -2,6 +2,7 @@
 
 namespace Hackspace\E2014Bundle\Business;
 
+use Elastica\Facet\Terms;
 use Elastica\Query;
 use Elastica\Query\Bool;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
@@ -57,9 +58,27 @@ class CSearcher
                 'postula_ubigeo_dis',
             ]);
 
-            $boolQuery->addShould($locationQuery);
+            $boolQuery->addMust($locationQuery);
         }
 
-        return $boolQuery;
+        $query = Query::create($boolQuery);
+
+        $this->setFacet($query, 'postula_ubigeo_dep', 'postula_ubigeo_dep');
+        $this->setFacet($query, 'postula_ubigeo_pro', 'postula_ubigeo_pro');
+        $this->setFacet($query, 'postula_ubigeo_dis', 'postula_ubigeo_dis');
+
+        return $query;
+    }
+
+    /**
+     * @param Query $query
+     * @param $facetName
+     * @param $facetField
+     */
+    protected function setFacet($query, $facetName, $facetField)
+    {
+        $facet = new Terms($facetName);
+        $facet->setField($facetField);
+        $query->addFacet($facet);
     }
 }
