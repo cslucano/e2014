@@ -3,6 +3,7 @@
 namespace Hackspace\E2014Bundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Candidato
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Hackspace\E2014Bundle\Entity\CandidatoRepository")
  */
-class Candidato
+class Candidato implements JsonSerializable
 {
     /**
      * @var integer
@@ -810,5 +811,41 @@ class Candidato
     public function getResidenciaTiempo()
     {
         return $this->residencia_tiempo;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function jsonSerialize()
+    {
+
+        return [
+            'candidato_jne_id' => $this->candidato_jne_id,
+            'org_pol' => $this->org_pol,
+            'cargo_autoridad' => $this->cargo_autoridad,
+            'postula_ubigeo' => $this->postula_ubigeo,
+            'postula_ubigeo_dep' => $this->postula_ubigeo_dep,
+            'postula_ubigeo_pro' => $this->postula_ubigeo_pro,
+            'postula_ubigeo_dis' => $this->postula_ubigeo_dis,
+            'forma_designacion' => $this->forma_designacion,
+            'dni' => $this->dni,
+            'appaterno' => $this->appaterno,
+            'apmaterno' => $this->apmaterno,
+            'nombres' => $this->nombres,
+            'fdn' => $this->fdn,
+            'sexo' => $this->sexo,
+            'email' => $this->email,
+            'nac_pais' => $this->nac_pais,
+            'nac_ubigeo' => $this->nac_ubigeo,
+            'nac_ubigeo_dep' => $this->nac_ubigeo_dep,
+            'nac_ubigeo_pro' => $this->nac_ubigeo_pro,
+            'nac_ubigeo_dis' => $this->nac_ubigeo_dis,
+            'residencia' => $this->residencia,
+            'residencia_ubigeo' => $this->residencia_ubigeo,
+            'residencia_ubigeo_dep' => $this->residencia_ubigeo_dep,
+            'residencia_ubigeo_pro' => $this->residencia_ubigeo_pro,
+            'residencia_ubigeo_dis' => $this->residencia_ubigeo_dis,
+            'residencia_tiempo' => $this->residencia_tiempo,
+        ];
     }
 }
