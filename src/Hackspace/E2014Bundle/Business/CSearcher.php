@@ -6,6 +6,7 @@ use Elastica\Query;
 use Elastica\Query\Bool;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Hackspace\E2014Bundle\Entity\BasicQuery;
+use Pagerfanta\Pagerfanta;
 
 class CSearcher
 {
@@ -19,14 +20,19 @@ class CSearcher
 
     /**
      * @param BasicQuery $basicQuery
+     * @param integer $page
+     * @param integer $limit
      *
      * @return array
      */
-    public function getCandidatos($basicQuery)
+    public function getCandidatos($basicQuery, $page, $limit = 20)
     {
         $query = $this->getQuery($basicQuery);
 
-        $candidatos = $this->finder->find($query);
+        /** @var Pagerfanta $candidatos */
+        $candidatos = $this->finder->findPaginated($query);
+        $candidatos->setMaxPerPage($limit);
+        $candidatos->setCurrentPage($page);
 
         return $candidatos;
     }

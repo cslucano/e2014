@@ -29,6 +29,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        pagerfanta_opts:
+            css_container_class : 'pagination pull-right'
+
+
 
 # Assetic Configuration
 assetic:
