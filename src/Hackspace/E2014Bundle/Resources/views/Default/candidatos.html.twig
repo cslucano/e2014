@@ -63,7 +63,7 @@
                         <div class="clearfix visible-xs"></div>
                         <div class="date">{{ candidato.dni }} <span>*</span></div>
                         <h6 class="title">
-                            <a href="#">
+                            <a href="{{ path('_infocandidato', { 'candidato_id' : candidato.id }) }}">
                                 {{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}
                             </a>
                         </h6>

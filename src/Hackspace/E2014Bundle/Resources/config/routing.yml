@@ -7,5 +7,8 @@ _candidatos:
     defaults: { _controller: HackspaceE2014Bundle:Default:candidatos }
 
 _infocandidato:
-    path:     /infocandidato
-    defaults: { _controller: HackspaceE2014Bundle:Default:infocandidato }
+    path:     /infocandidato/{candidato_id}.{_format}
+    defaults: { _controller: HackspaceE2014Bundle:Default:infocandidato, _format: html }
+    requirements:
+        candidato_id: \d+
+        _format: html|json

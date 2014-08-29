@@ -65,8 +65,24 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function infocandidatoAction()
+    public function infocandidatoAction(Request $request, $candidato_id, $_format)
     {
-        return $this->render('HackspaceE2014Bundle:Default:infocandidato.html.twig', []);
+        /** @var QFormHandler $qFormHandler */
+        $qFormHandler = $this->container->get('hackspace_e2014.q_form_handler');
+        $qFormHandler->handleRequest($request);
+
+        $candidato = $this->getDoctrine()->getRepository('HackspaceE2014Bundle:Candidato')->find($candidato_id);
+
+        if (!$candidato) {
+
+            return $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
+                'form' => $qFormHandler->getQForm()->createView(),
+            ]);
+        }
+
+        return $this->render('HackspaceE2014Bundle:Default:infocandidato.'.$_format.'.twig', [
+            'candidato' => $candidato,
+            'form' => $qFormHandler->form->createView(),
+        ]);
     }
 }
