@@ -9,12 +9,12 @@
 
     <div class="header-page-title">
         <div class="container">
-            <h1>John Doe <small>Front-end Developer</small></h1>
+            <h1>{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}<small>{{ candidato.cargoautoridad }}</small></h1>
 
             <ul class="breadcrumbs">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Candidates</a></li>
-                <li><a href="#">John Doe</a></li>
+                <li><a href="#">Candidatos</a></li>
+                <li><a href="#">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</a></li>
             </ul>
         </div>
     </div>
@@ -28,71 +28,63 @@
             <div class="widget sidebar-widget white-container candidates-single-widget">
                 <div class="widget-content">
                     <div class="thumb">
+                        {#
+                        <img src="{{ asset(random(['img/content/face-1.png','img/content/face-2.png','img/content/face-3.png','img/content/face-4.png','img/content/face-5.png'])) }}" alt="">
+                        #}
                         <img src="{{ asset('img/content/face-6.png') }}" alt="">
+                        {#
+                        <img src="http://200.37.211.184/PADRON/14/01/27/204240/08051943.jpg" alt="">
+                        #}
                     </div>
 
-                    <h5 class="bottom-line">Candidate Details</h5>
+                    <h5 class="bottom-line">Detalles</h5>
 
                     <table>
                         <tbody>
                         <tr>
-                            <td>Name</td>
-                            <td>Abu Antar</td>
+                            <td>Nombre</td>
+                            <td>{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</td>
                         </tr>
 
                         <tr>
-                            <td>Age</td>
-                            <td>38 Years Old</td>
+                            <td>Fecha de Nacimiento</td>
+                            <td>{{ candidato.fdn|slice(0,4) }}/{{ candidato.fdn|slice(4,2) }}/{{ candidato.fdn|slice(6,2) }}</td>
                         </tr>
 
                         <tr>
-                            <td>Location</td>
-                            <td>Jordan Amman</td>
+                            <td>Cargo</td>
+                            <td>{{ candidato.cargoautoridad }}</td>
                         </tr>
 
                         <tr>
-                            <td>Experiance</td>
-                            <td>15 Years</td>
+                            <td>Departamento</td>
+                            <td>{{ candidato.postulaubigeodep }}</td>
                         </tr>
 
                         <tr>
-                            <td>Dgree</td>
-                            <td>MBA</td>
+                            <td>Provincia</td>
+                            <td>{{ candidato.postulaubigeopro }}</td>
                         </tr>
 
                         <tr>
-                            <td>Career Lavel</td>
-                            <td>Mid-Level</td>
+                            <td>Distrito</td>
+                            <td>{{ candidato.postulaubigeodis }}</td>
                         </tr>
 
                         <tr>
-                            <td>Phone</td>
-                            <td>(800) 123-4567</td>
+                            <td>DNI</td>
+                            <td>{{ candidato.postulaubigeodis }}</td>
                         </tr>
 
-                        <tr>
-                            <td>Fax</td>
-                            <td>(800) 123-4568</td>
-                        </tr>
-
-                        <tr>
-                            <td>E-mail</td>
-                            <td><a href="mailto:example@example.com">example@example.com</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>Website</td>
-                            <td><a href="#">example.com</a></td>
-                        </tr>
                         </tbody>
                     </table>
 
-                    <h5 class="bottom-line">Professional Rating</h5>
+                    <h5 class="bottom-line">Ranking</h5>
 
                     <table>
                         <tbody>
                         <tr>
-                            <td>Expertise</td>
+                            <td>Experiencia</td>
                             <td>
                                 <ul class="stars">
                                     <li><i class="fa fa-star"></i></li>
@@ -105,7 +97,7 @@
                         </tr>
 
                         <tr>
-                            <td>Knowledge</td>
+                            <td>Conocimiento</td>
                             <td>
                                 <ul class="stars">
                                     <li><i class="fa fa-star"></i></li>
@@ -116,7 +108,7 @@
                                 </ul>
                             </td>
                         </tr>
-
+                        {#
                         <tr>
                             <td>Quality</td>
                             <td>
@@ -155,6 +147,7 @@
                                 </ul>
                             </td>
                         </tr>
+                        #}
                         </tbody>
                     </table>
                 </div>
@@ -163,6 +156,7 @@
     </div> <!-- end .page-sidebar -->
 
     <div class="col-sm-8 page-content">
+    {#
     <div class="clearfix mb30 hidden-xs">
         <a href="#" class="btn btn-gray pull-left">Back to Listings</a>
         <div class="pull-right">
@@ -170,10 +164,11 @@
             <a href="#" class="btn btn-gray">Next</a>
         </div>
     </div>
+    #}
 
     <div class="candidates-item candidates-single-item">
-        <h6 class="title"><a href="#">John Doe</a></h6>
-        <span class="meta">24 Years Old - Sydney, AU</span>
+        <h6 class="title"><a href="#">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</a></h6>
+        <span class="meta">{{ candidato.fdn|slice(1,4) }}/{{ candidato.fdn|slice(5,2) }}/{{ candidato.fdn|slice(7,2) }}</span>
 
         <ul class="top-btns">
             <li><a href="#" class="btn btn-gray fa fa-star"></a></li>
@@ -183,23 +178,24 @@
             <li><a href="#" class="btn btn-gray fa fa-facebook"></a></li>
             <li><a href="#" class="btn btn-gray fa fa-twitter"></a></li>
             <li><a href="#" class="btn btn-gray fa fa-google-plus"></a></li>
-            <li><a href="#" class="btn btn-gray fa fa-dribbble"></a></li>
+            <li><a href="http://200.48.102.67/pecaoe/sipe/HojaVida.aspx?cod=84In9z7iqnJG7%2f9q%2fk6uoQ%3d%3d" class="btn btn-gray fa fa-dribbble"></a></li>
             <li><a href="#" class="btn btn-gray fa fa-pinterest"></a></li>
             <li><a href="#" class="btn btn-gray fa fa-linkedin"></a></li>
         </ul>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae.</p>
+        <p>{{ candidato.formadesignacion }}.</p>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, at nemo inventore temporibus corporis suscipit.</p>
 
         <ul class="list-unstyled">
-            <li><strong>Experience:</strong> 5 Years</li>
-            <li><strong>Degree:</strong> MBA</li>
-            <li><strong>Career Level:</strong> Mid Career</li>
+            <li><strong>Educacion:</strong>Abogado</li>
+            <li><strong>Bienes:</strong>no registra</li>
+            <li><strong>Ingresos:</strong>no registra</li>
         </ul>
 
+        {#
         <h5>Skills</h5>
 
         <div class="progress-bar toggle" data-progress="60">
@@ -228,6 +224,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, asperiores.
             </div>
         </div>
+        #}
 
         <hr>
 
@@ -243,15 +240,17 @@
         </div>
     </div>
 
+    {#
     <div class="title-lines">
         <h3 class="mt0">Similar Candidates</h3>
     </div>
 
+
     <div class="candidates-item">
         <div class="thumb"><img src="{{ asset('img/content/face-0.png') }}" alt=""></div>
 
-        <h6 class="title"><a href="#">John Doe</a></h6>
-        <span class="meta">24 Years Old - Sydney, AU</span>
+        <h6 class="title"><a href="#">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</a></h6>
+        <span class="meta">{{ candidato.fdn|slice(1,4) }}/{{ candidato.fdn|slice(5,2) }}/{{ candidato.fdn|slice(7,2) }}</span>
 
         <ul class="top-btns">
             <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
@@ -321,8 +320,8 @@
     <div class="candidates-item">
         <div class="thumb"><img src="{{ asset('img/content/face-1.png') }}" alt=""></div>
 
-        <h6 class="title"><a href="#">John Doe</a></h6>
-        <span class="meta">24 Years Old - Sydney, AU</span>
+        <h6 class="title"><a href="#">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</a></h6>
+        <span class="meta">{{ candidato.fdn|slice(1,4) }}/{{ candidato.fdn|slice(5,2) }}/{{ candidato.fdn|slice(7,2) }}</span>
 
         <ul class="top-btns">
             <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
@@ -392,8 +391,8 @@
     <div class="candidates-item">
         <div class="thumb"><img src="{{ asset('img/content/face-2.png') }}" alt=""></div>
 
-        <h6 class="title"><a href="#">John Doe</a></h6>
-        <span class="meta">24 Years Old - Sydney, AU</span>
+        <h6 class="title"><a href="#">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</a></h6>
+        <span class="meta">{{ candidato.fdn|slice(1,4) }}/{{ candidato.fdn|slice(5,2) }}/{{ candidato.fdn|slice(7,2) }}</span>
 
         <ul class="top-btns">
             <li><a href="#" class="btn btn-gray fa fa-plus toggle"></a></li>
@@ -459,6 +458,7 @@
             </div>
         </div>
     </div>
+    #}
     </div> <!-- end .page-content -->
     </div>
     </div> <!-- end .container -->

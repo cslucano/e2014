@@ -47,8 +47,10 @@ class CSearcher
     {
         $boolQuery = new Bool();
 
-        $mainQuery = new Query\QueryString($basicQuery->getQuery());
-        $boolQuery->addMust($mainQuery);
+        if ( ! empty( $basicQuery->getQuery() ) ) {
+            $mainQuery = new Query\QueryString($basicQuery->getQuery());
+            $boolQuery->addMust($mainQuery);
+        }
 
         if ( ! empty( $basicQuery->getLocation() ) ) {
             $locationQuery = new Query\QueryString($basicQuery->getLocation());
@@ -63,9 +65,10 @@ class CSearcher
 
         $query = Query::create($boolQuery);
 
-        $this->setFacet($query, 'postula_ubigeo_dep', 'postula_ubigeo_dep');
-        $this->setFacet($query, 'postula_ubigeo_pro', 'postula_ubigeo_pro');
-        $this->setFacet($query, 'postula_ubigeo_dis', 'postula_ubigeo_dis');
+        $this->setFacet($query, 'Cargo', 'cargo_autoridad');
+        $this->setFacet($query, 'Departamento', 'postula_ubigeo_dep');
+        $this->setFacet($query, 'Provincia', 'postula_ubigeo_pro');
+        $this->setFacet($query, 'Distrito', 'postula_ubigeo_dis');
 
         return $query;
     }

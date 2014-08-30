@@ -16,7 +16,7 @@ class BasicQueryType extends AbstractType
     {
         $builder
             ->add('query', 'text', [
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'candidato, partido, region, ciudad, ...',

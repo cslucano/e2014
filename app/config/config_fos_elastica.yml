@@ -1,19 +1,29 @@
 fos_elastica:
     clients:
         default: { host: localhost, port: 9200 }
+
     indexes:
         e2014:
+            settings:
+                analysis:
+                    analyzer:
+                        comma:
+                            type: pattern
+                            pattern: ","
             types:
                 candidato:
                     mappings:
                         org_pol: ~
-                        cargo_autoridad: ~
+                        cargo_autoridad: { analyzer : comma }
                         postula_ubigeo: ~
                         postula_ubigeo_dep:
+                            analyzer : comma
                             boost: 10
                         postula_ubigeo_pro:
+                            analyzer : comma
                             boost: 10
                         postula_ubigeo_dis:
+                            analyzer : comma
                             boost: 10
                         forma_designacion: ~
                         dni: ~
