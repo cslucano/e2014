@@ -9,7 +9,7 @@
 
     <div class="header-page-title">
         <div class="container">
-            <h1>{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}<small>{{ candidato.cargoautoridad }}</small></h1>
+            <h1>{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}<small> {{ candidato.cargoautoridad }}</small></h1>
 
             <ul class="breadcrumbs">
                 <li><a href="#">Home</a></li>
@@ -168,7 +168,7 @@
 
     <div class="candidates-item candidates-single-item">
         <h6 class="title"><a href="#">{{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}</a></h6>
-        <span class="meta">{{ candidato.fdn|slice(1,4) }}/{{ candidato.fdn|slice(5,2) }}/{{ candidato.fdn|slice(7,2) }}</span>
+        <span class="meta">{{ candidato.fdn|slice(0,4) }}/{{ candidato.fdn|slice(4,2) }}/{{ candidato.fdn|slice(6,2) }}</span>
 
         <ul class="top-btns">
             <li><a href="#" class="btn btn-gray fa fa-star"></a></li>

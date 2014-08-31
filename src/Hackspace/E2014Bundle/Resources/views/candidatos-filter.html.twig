@@ -43,15 +43,9 @@
                     {%  for key, facet in facets  %}
                         <h6>Por {{ key }}</h6>
 
-                        <div>
-                            <ul class="filter-list">
-                                {% for term in facet.terms %}
-                                <li><a href="#">{{ term.term }} <span>({{ term.count }})</span></a></li>
-                                {% endfor %}
-                            </ul>
-
-                            <a href="#" class="toggle"></a>
-                        </div>
+                        {% for term in facet.terms %}
+                            <div class="checkbox"><label><input type="checkbox" checked="true">{{ term.term }} <span>({{ term.count }})</span></label></div>
+                        {% endfor %}
                     {%  endfor  %}
 
                     {#
