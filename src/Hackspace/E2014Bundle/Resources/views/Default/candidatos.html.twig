@@ -21,6 +21,7 @@
 
 {% block page_content %}
     <div class="container">
+        <div id="slugdata" style="display:none;">[(u'q', [u'excel'])]</div>
         <div class="row">
             {{  include('HackspaceE2014Bundle::candidatos-filter.html.twig', { 'form' : form, 'facets' : facets })  }}
 
@@ -61,7 +62,7 @@
 
                 {%  for candidato in candidatos %}
                     <div class="jobs-item with-thumb">
-                        <div class="thumb"><img src="{{ asset(random(['img/content/bus-00.png', 'img/content/bus-01 .png', 'img/content/bus-02.png', 'img/content/bus-03.png'])) }}" alt=""></div>
+                        <div class="thumb"><img src="{{ asset(random(['img/content/bus-00.png', 'img/content/bus-01.png', 'img/content/bus-02.png', 'img/content/bus-03.png'])) }}" alt=""></div>
                         <div class="clearfix visible-xs"></div>
                         <div class="date">{{ candidato.dni }} <span>*</span></div>
                         <h6 class="title">
