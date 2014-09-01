@@ -2,6 +2,7 @@ parameters:
 #    hackspace_e2014.example.class: Hackspace\E2014Bundle\Example
     hackspace_e2014.q_form_handler.class: Hackspace\E2014Bundle\Business\QFormHandler
     hackspace_e2014.c_searcher.class: Hackspace\E2014Bundle\Business\CSearcher
+    hackspace_e2014.c_facet_factory.class: Hackspace\E2014Bundle\Business\CFacetFactory
 
 services:
 #    hackspace_e2014.example:
@@ -15,3 +16,7 @@ services:
       hackspace_e2014.c_searcher:
         class: %hackspace_e2014.c_searcher.class%
         arguments: [@fos_elastica.finder.e2014.candidato]
+
+      hackspace_e2014.c_facet_factory:
+        class: %hackspace_e2014.c_facet_factory.class%
+        arguments: []

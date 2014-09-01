@@ -53,6 +53,27 @@ class Candidato implements JsonSerializable
     /**
      * @var string
      *
+     * @ORM\Column(name="postula_ubigeo_cod_dep", type="text", nullable=true)
+     */
+    private $postula_ubigeo_cod_dep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postula_ubigeo_cod_pro", type="text", nullable=true)
+     */
+    private $postula_ubigeo_cod_pro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="postula_ubigeo_cod_dis", type="text", nullable=true)
+     */
+    private $postula_ubigeo_cod_dis;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="postula_ubigeo_dep", type="text", nullable=true)
      */
     private $postula_ubigeo_dep;
@@ -305,6 +326,75 @@ class Candidato implements JsonSerializable
     public function getPostulaUbigeo()
     {
         return $this->postula_ubigeo;
+    }
+
+    /**
+     * Set postula_ubigeo_cod_dep
+     *
+     * @param string $postulaUbigeoCodDep
+     * @return Candidato
+     */
+    public function setPostulaUbigeoCodDep($postulaUbigeoCodDep)
+    {
+        $this->postula_ubigeo_cod_dep = $postulaUbigeoCodDep;
+
+        return $this;
+    }
+
+    /**
+     * Get postula_ubigeo_cod_dep
+     *
+     * @return string
+     */
+    public function getPostulaUbigeoCodDep()
+    {
+        return $this->postula_ubigeo_cod_dep;
+    }
+
+    /**
+     * Set postula_ubigeo_cod_pro
+     *
+     * @param string $postulaUbigeoCodPro
+     * @return Candidato
+     */
+    public function setPostulaUbigeoCodPro($postulaUbigeoCodPro)
+    {
+        $this->postula_ubigeo_cod_pro = $postulaUbigeoCodPro;
+
+        return $this;
+    }
+
+    /**
+     * Get postula_ubigeo_cod_pro
+     *
+     * @return string
+     */
+    public function getPostulaUbigeoCodPro()
+    {
+        return $this->postula_ubigeo_cod_pro;
+    }
+
+    /**
+     * Set postula_ubigeo_cod_dis
+     *
+     * @param string $postulaUbigeoCodDis
+     * @return Candidato
+     */
+    public function setPostulaUbigeoCodDis($postulaUbigeoCodDis)
+    {
+        $this->postula_ubigeo_cod_dis = $postulaUbigeoCodDis;
+
+        return $this;
+    }
+
+    /**
+     * Get postula_ubigeo_cod_dis
+     *
+     * @return string
+     */
+    public function getPostulaUbigeoCodDis()
+    {
+        return $this->postula_ubigeo_cod_dis;
     }
 
     /**

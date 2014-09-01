@@ -65,10 +65,8 @@ class CSearcher
 
         $query = Query::create($boolQuery);
 
-        $this->setFacet($query, 'Cargo', 'cargo_autoridad');
-        $this->setFacet($query, 'Departamento', 'postula_ubigeo_dep');
-        $this->setFacet($query, 'Provincia', 'postula_ubigeo_pro');
-        $this->setFacet($query, 'Distrito', 'postula_ubigeo_dis');
+        $cFacetFactory = new CFacetFactory();
+        $cFacetFactory->getFacets($query);
 
         return $query;
     }
