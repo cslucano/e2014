@@ -13,7 +13,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         /** @var QFormHandler $qFormHandler */
-        $qFormHandler = $this->container->get('hackspace_e2014.q_form_handler');
+        $qFormHandler = $this->get('hackspace_e2014.q_form_handler');
 
         $qFormHandler->handleRequest($request);
 
@@ -44,13 +44,13 @@ class DefaultController extends Controller
     public function candidatosAction(Request $request)
     {
         /** @var QFormHandler $qFormHandler */
-        $qFormHandler = $this->container->get('hackspace_e2014.q_form_handler');
+        $qFormHandler = $this->get('hackspace_e2014.q_form_handler');
 
         $qFormHandler->handleRequest($request);
 
         if ($qFormHandler->is_valid) {
             /** @var CSearcher $cSearcher */
-            $cSearcher = $this->container->get('hackspace_e2014.c_searcher');
+            $cSearcher = $this->get('hackspace_e2014.c_searcher');
 
             $cSearcher->searchCandidatos($qFormHandler->data, $request->get('page', 1));
             $candidatos = $cSearcher->getCandidatos();
@@ -71,7 +71,7 @@ class DefaultController extends Controller
     public function infocandidatoAction(Request $request, $candidato_id, $_format)
     {
         /** @var QFormHandler $qFormHandler */
-        $qFormHandler = $this->container->get('hackspace_e2014.q_form_handler');
+        $qFormHandler = $this->get('hackspace_e2014.q_form_handler');
         $qFormHandler->handleRequest($request);
 
         $candidato = $this->getDoctrine()->getRepository('HackspaceE2014Bundle:Candidato')->find($candidato_id);
