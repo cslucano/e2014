@@ -2,7 +2,6 @@
 
 namespace Hackspace\E2014Bundle\Business;
 
-use Elastica\Facet\Terms;
 use Elastica\Query;
 use Elastica\Query\Bool;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
@@ -12,11 +11,44 @@ use Pagerfanta\Pagerfanta;
 class CSearcher
 {
     /** @var  TransformedFinder $finder */
-    public $finder;
+    protected $finder;
+    protected $candidatos;
+    protected $facets;
+    protected $facetsResults;
+    protected $cookie;
 
-    public function __construct(TransformedFinder $finder)
+    /**
+     * @return array
+     */
+    public function getCandidatos()
+    {
+        return $this->candidatos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacetsResults()
+    {
+        return $this->facetsResults;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCookie()
+    {
+        return $this->cookie;
+    }
+
+
+    public function __construct(TransformedFinder $finder, CFacetFactory $cFacetFactory)
     {
         $this->finder = $finder;
+        $this->cFacetFactory = $cFacetFactory;
+        $this->candidatos = [];
+        $this->facets = [];
+        $this->cookie = json_encode([]);
     }
 
     /**
@@ -26,7 +58,7 @@ class CSearcher
      *
      * @return array
      */
-    public function getCandidatos($basicQuery, $page, $limit = 20)
+    public function searchCandidatos($basicQuery, $page, $limit = 20)
     {
         $query = $this->getQuery($basicQuery);
 
@@ -34,8 +66,29 @@ class CSearcher
         $candidatos = $this->finder->findPaginated($query);
         $candidatos->setMaxPerPage($limit);
         $candidatos->setCurrentPage($page);
+        $eFacets = $candidatos->getAdapter()->getFacets();
+        foreach($eFacets as $eFacetKey => $eFacetValue )
+        {
+            if (array_key_exists($eFacetKey, $this->facets)) {
+                $content = [];
+                $content['type']  = $eFacetValue['_type'];
+                $content['total'] = $eFacetValue['total'];
+                $content['terms'] = [];
+                foreach ($eFacetValue['terms'] as $term) {
+                    $content['terms'][] = [
+                        'term' => $term['term'],
+                        'count' => $term['count'],
+                    ];
+                }
 
-        return $candidatos;
+                /** @var CFacet $cFacet */
+                $cFacet = $this->facets[$eFacetKey];
+                $cFacet->setResults($content);
+            }
+        }
+
+        $this->candidatos = $candidatos;
+        $this->facetsResults = $this->cFacetFactory->getFacetsResults($this->facets);
     }
 
     /**
@@ -65,21 +118,9 @@ class CSearcher
 
         $query = Query::create($boolQuery);
 
-        $cFacetFactory = new CFacetFactory();
-        $cFacetFactory->getFacets($query);
+        $this->facets = $this->cFacetFactory->getFacets();
+        $this->cFacetFactory->setToQuery($query);
 
         return $query;
-    }
-
-    /**
-     * @param Query $query
-     * @param $facetName
-     * @param $facetField
-     */
-    protected function setFacet($query, $facetName, $facetField)
-    {
-        $facet = new Terms($facetName);
-        $facet->setField($facetField);
-        $query->addFacet($facet);
     }
 }

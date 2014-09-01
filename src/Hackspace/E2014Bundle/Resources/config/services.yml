@@ -15,7 +15,7 @@ services:
 
       hackspace_e2014.c_searcher:
         class: %hackspace_e2014.c_searcher.class%
-        arguments: [@fos_elastica.finder.e2014.candidato]
+        arguments: [@fos_elastica.finder.e2014.candidato, @hackspace_e2014.c_facet_factory ]
 
       hackspace_e2014.c_facet_factory:
         class: %hackspace_e2014.c_facet_factory.class%
