@@ -24,7 +24,7 @@ class CFacetFactory {
         $cFacet = new CFacet(CFacet::TERMS, 'Cargo', 'candidato.cargo_autoridad', 'cargo_autoridad');
         $this->facets['candidato.cargo_autoridad'] = $cFacet;
 
-        $cFacet = new CFacet(CFacet::TERMS, 'Region', 'candidato.postula_ubigeo_cod_dep', 'postula_ubigeo_cod_dep');
+        $cFacet = new CFacet(CFacet::TERMS, 'Región', 'candidato.postula_ubigeo_cod_dep', 'postula_ubigeo_cod_dep');
         $this->facets['candidato.postula_ubigeo_cod_dep'] = $cFacet;
 
         $cFacet = new CFacet(CFacet::TERMS, 'Provincia', 'candidato.postula_ubigeo_cod_pro', 'postula_ubigeo_cod_pro');

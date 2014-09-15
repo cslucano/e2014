@@ -12,6 +12,7 @@ class CSearcher
 {
     /** @var  TransformedFinder $finder */
     protected $finder;
+    protected $cFacetFactory;
     protected $candidatos;
     protected $facets;
     protected $facetsResults;
