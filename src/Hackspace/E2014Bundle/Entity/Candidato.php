@@ -225,6 +225,18 @@ class Candidato implements JsonSerializable
      */
     private $residencia_tiempo;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="postula_ubigeo_id", type='integer', nullable=true)
+     */
+    private $postula_ubigeo_id;
+
+    /**
+     * @OneToMany(TargetEntity="Ubigeo")
+     * @ORM\JoinColumn(name="postula_ubigeo_id", referencedColumnName="id")
+     */
+    private $postula_ubigeo_e;
 
     /**
      * Get id
