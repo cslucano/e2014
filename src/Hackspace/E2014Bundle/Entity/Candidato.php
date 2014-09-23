@@ -228,12 +228,12 @@ class Candidato implements JsonSerializable
     /**
      * @var integer
      *
-     * @ORM\Column(name="postula_ubigeo_id", type='integer', nullable=true)
+     * @ORM\Column(name="postula_ubigeo_id", type="integer", nullable=true)
      */
     private $postula_ubigeo_id;
 
     /**
-     * @OneToMany(TargetEntity="Ubigeo")
+     * @ORM\ManyToOne(targetEntity="Ubigeo")
      * @ORM\JoinColumn(name="postula_ubigeo_id", referencedColumnName="id")
      */
     private $postula_ubigeo_e;
@@ -949,5 +949,51 @@ class Candidato implements JsonSerializable
             'residencia_ubigeo_dis' => $this->residencia_ubigeo_dis,
             'residencia_tiempo' => $this->residencia_tiempo,
         ];
+    }
+
+    /**
+     * Set postula_ubigeo_id
+     *
+     * @param integer $postulaUbigeoId
+     * @return Candidato
+     */
+    public function setPostulaUbigeoId($postulaUbigeoId)
+    {
+        $this->postula_ubigeo_id = $postulaUbigeoId;
+
+        return $this;
+    }
+
+    /**
+     * Get postula_ubigeo_id
+     *
+     * @return integer 
+     */
+    public function getPostulaUbigeoId()
+    {
+        return $this->postula_ubigeo_id;
+    }
+
+    /**
+     * Set postula_ubigeo_e
+     *
+     * @param \Hackspace\E2014Bundle\Entity\Ubigeo $postulaUbigeoE
+     * @return Candidato
+     */
+    public function setPostulaUbigeoE(\Hackspace\E2014Bundle\Entity\Ubigeo $postulaUbigeoE = null)
+    {
+        $this->postula_ubigeo_e = $postulaUbigeoE;
+
+        return $this;
+    }
+
+    /**
+     * Get postula_ubigeo_e
+     *
+     * @return \Hackspace\E2014Bundle\Entity\Ubigeo 
+     */
+    public function getPostulaUbigeoE()
+    {
+        return $this->postula_ubigeo_e;
     }
 }

@@ -19,15 +19,15 @@ fos_elastica:
                         postula_ubigeo_cod_dep: ~
                         postula_ubigeo_cod_pro: ~
                         postula_ubigeo_cod_dis: ~
-                        postula_ubigeo_dep:
-                            analyzer : comma
-                            boost: 10
-                        postula_ubigeo_pro:
-                            analyzer : comma
-                            boost: 10
-                        postula_ubigeo_dis:
-                            analyzer : comma
-                            boost: 10
+                        #postula_ubigeo_dep:
+                        #    analyzer : comma
+                        #    boost: 10
+                        #postula_ubigeo_pro:
+                        #    analyzer : comma
+                        #    boost: 10
+                        #postula_ubigeo_dis:
+                        #    analyzer : comma
+                        #    boost: 10
                         forma_designacion: ~
                         dni: ~
                         appaterno:
@@ -41,18 +41,26 @@ fos_elastica:
                         email: ~
                         nac_pais: ~
                         nac_ubigeo: ~
-                        nac_ubigeo_dep: ~
-                        nac_ubigeo_pro: ~
-                        nac_ubigeo_dis: ~
+                        #nac_ubigeo_dep: ~
+                        #nac_ubigeo_pro: ~
+                        #nac_ubigeo_dis: ~
                         residencia: ~
                         residencia_ubigeo: ~
-                        residencia_ubigeo_dep: ~
-                        residencia_ubigeo_pro: ~
-                        residencia_ubigeo_dis: ~
+                        #residencia_ubigeo_dep: ~
+                        #residencia_ubigeo_pro: ~
+                        #residencia_ubigeo_dis: ~
                         residencia_tiempo: ~
+                        postula_ubigeo_e:
+                          type: "nested"
+                          properties:
+                            ubigeo: ~
+                            ubigeo_dep: ~
+                            ubigeo_pro: ~
+                            ubigeo_dis: ~
                     persistence:
                         driver: orm
                         model: Hackspace\E2014Bundle\Entity\Candidato
-                        provider: ~
+                        provider:
+                          query_builder_method: elasticaPopulateQueryBuilder
                         listener: ~
                         finder: ~
