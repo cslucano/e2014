@@ -2,30 +2,103 @@ bldr:
     name: singularlab/e2014
     description: E2014 bldr tasks 
     profiles: 
-        someTask:
-            description: Gets ran when `./bldr.phar build someTask` is called
+        dumpDb:
+            description: Dump postgres db 
             tasks:
-                - foo
-        someOtherTask:
+                - setPgPassword
+                - dumpPgDb
+                - moveDumpFile
+        dropDb:
+            description: Drop postgres db
             tasks:
-                - bar
-        inheritanceExample:
-            description: Will run the tasks from `someTask` and then `someOtherTask`.
-            uses:
-                before: [someTask]
-                after: [someOtherTask]
+                - setPgPassword
+                - dropPgDb
+        restoreDb:
+            description: Restore postgres db
+            tasks:
+                - setPgPassword
+                - createPgDb
+                - restorePgDb
     tasks:
-        foo:
-            description: Foo task
+        createPgDb:
+            description: Create Pg Database Task
             calls:
                 -
                     type: exec
-                    executable: echo
-                    arguments: [Hello World]
-        bar:
-            description: Bar task
+                    executable: createdb
+                    arguments:
+                        - -h
+                        - localhost
+                        - -U
+                        - e2014
+                        - e2014
+        dropPgDb:
+            description: Drop Pg Database Task
             calls:
                 -
                     type: exec
-                    executable: sleep
-                    arguments: [1]
+                    executable: dropdb
+                    arguments:
+                        - -h
+                        - localhost
+                        - -U
+                        - e2014
+                        - e2014
+        dumpPgDb:
+            description: Dump Pg Database Task
+            calls:
+                -
+                    type: exec
+                    executable: pg_dump
+                    arguments:
+                        - -h
+                        - localhost
+                        - -U
+                        - e2014
+                        - -O
+                        - -Fc
+                        - -f
+                        - e2014.dump
+                        - e2014
+        restorePgDb:
+            description: Restore Pg Database Task
+            calls:
+                -
+                    type: exec
+                    executable: pg_restore
+                    arguments:
+                        - -h
+                        - localhost
+                        - -U
+                        - e2014
+                        - -d
+                        - e2014
+                        - -Fc
+                        - $HOME$/Dropbox/dbs/e2014/e2014.dump
+        setPgPassword:
+            description: set PGPASSWORD variable
+            calls:
+                -
+                    type: exec
+                    executable: export
+                    arguments:
+                        - PGPASSWORD="e2014"
+        moveDumpFile:
+            description: Move Db Dump File to Dropbox
+            calls:
+                -
+                    type: exec
+                    executable: mv
+                    arguments:
+                        - e2014.dump
+                        - $HOME$/Dropbox/dbs/e2014/
+        compressDumpFile:
+            description: Compress DbDump file
+            calls:
+                -
+                    type: exec
+                    executable: tar
+                    arguments:
+                        - czvf
+                        - $HOME$/Dropbox/dbs/e2014/e2014.dump.tar.gz
+                        - $HOME$/Dropbox/dbs/e2014/e2014.dump
