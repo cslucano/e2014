@@ -251,7 +251,7 @@ class Candidato implements JsonSerializable
     /**
      * Set candidato_jne_id
      *
-     * @param integer $candidatoJneId
+     * @param  integer   $candidatoJneId
      * @return Candidato
      */
     public function setCandidatoJneId($candidatoJneId)
@@ -274,7 +274,7 @@ class Candidato implements JsonSerializable
     /**
      * Set org_pol
      *
-     * @param string $orgPol
+     * @param  string    $orgPol
      * @return Candidato
      */
     public function setOrgPol($orgPol)
@@ -297,7 +297,7 @@ class Candidato implements JsonSerializable
     /**
      * Set cargo_autoridad
      *
-     * @param string $cargoAutoridad
+     * @param  string    $cargoAutoridad
      * @return Candidato
      */
     public function setCargoAutoridad($cargoAutoridad)
@@ -320,7 +320,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo
      *
-     * @param string $postulaUbigeo
+     * @param  string    $postulaUbigeo
      * @return Candidato
      */
     public function setPostulaUbigeo($postulaUbigeo)
@@ -343,7 +343,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_cod_dep
      *
-     * @param string $postulaUbigeoCodDep
+     * @param  string    $postulaUbigeoCodDep
      * @return Candidato
      */
     public function setPostulaUbigeoCodDep($postulaUbigeoCodDep)
@@ -366,7 +366,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_cod_pro
      *
-     * @param string $postulaUbigeoCodPro
+     * @param  string    $postulaUbigeoCodPro
      * @return Candidato
      */
     public function setPostulaUbigeoCodPro($postulaUbigeoCodPro)
@@ -389,7 +389,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_cod_dis
      *
-     * @param string $postulaUbigeoCodDis
+     * @param  string    $postulaUbigeoCodDis
      * @return Candidato
      */
     public function setPostulaUbigeoCodDis($postulaUbigeoCodDis)
@@ -412,7 +412,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_dep
      *
-     * @param string $postulaUbigeoDep
+     * @param  string    $postulaUbigeoDep
      * @return Candidato
      */
     public function setPostulaUbigeoDep($postulaUbigeoDep)
@@ -435,7 +435,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_pro
      *
-     * @param string $postulaUbigeoPro
+     * @param  string    $postulaUbigeoPro
      * @return Candidato
      */
     public function setPostulaUbigeoPro($postulaUbigeoPro)
@@ -458,7 +458,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_dis
      *
-     * @param string $postulaUbigeoDis
+     * @param  string    $postulaUbigeoDis
      * @return Candidato
      */
     public function setPostulaUbigeoDis($postulaUbigeoDis)
@@ -481,7 +481,7 @@ class Candidato implements JsonSerializable
     /**
      * Set forma_designacion
      *
-     * @param string $formaDesignacion
+     * @param  string    $formaDesignacion
      * @return Candidato
      */
     public function setFormaDesignacion($formaDesignacion)
@@ -504,7 +504,7 @@ class Candidato implements JsonSerializable
     /**
      * Set dni
      *
-     * @param string $dni
+     * @param  string    $dni
      * @return Candidato
      */
     public function setDni($dni)
@@ -527,7 +527,7 @@ class Candidato implements JsonSerializable
     /**
      * Set appaterno
      *
-     * @param string $appaterno
+     * @param  string    $appaterno
      * @return Candidato
      */
     public function setAppaterno($appaterno)
@@ -550,7 +550,7 @@ class Candidato implements JsonSerializable
     /**
      * Set apmaterno
      *
-     * @param string $apmaterno
+     * @param  string    $apmaterno
      * @return Candidato
      */
     public function setApmaterno($apmaterno)
@@ -573,7 +573,7 @@ class Candidato implements JsonSerializable
     /**
      * Set nombres
      *
-     * @param string $nombres
+     * @param  string    $nombres
      * @return Candidato
      */
     public function setNombres($nombres)
@@ -596,7 +596,7 @@ class Candidato implements JsonSerializable
     /**
      * Set fdn
      *
-     * @param string $fdn
+     * @param  string    $fdn
      * @return Candidato
      */
     public function setFdn($fdn)
@@ -619,7 +619,7 @@ class Candidato implements JsonSerializable
     /**
      * Set sexo
      *
-     * @param integer $sexo
+     * @param  integer   $sexo
      * @return Candidato
      */
     public function setSexo($sexo)
@@ -642,7 +642,7 @@ class Candidato implements JsonSerializable
     /**
      * Set email
      *
-     * @param string $email
+     * @param  string    $email
      * @return Candidato
      */
     public function setEmail($email)
@@ -665,7 +665,7 @@ class Candidato implements JsonSerializable
     /**
      * Set nac_pais
      *
-     * @param string $nacPais
+     * @param  string    $nacPais
      * @return Candidato
      */
     public function setNacPais($nacPais)
@@ -688,7 +688,7 @@ class Candidato implements JsonSerializable
     /**
      * Set nac_ubigeo
      *
-     * @param string $nacUbigeo
+     * @param  string    $nacUbigeo
      * @return Candidato
      */
     public function setNacUbigeo($nacUbigeo)
@@ -711,7 +711,7 @@ class Candidato implements JsonSerializable
     /**
      * Set nac_ubigeo_dep
      *
-     * @param string $nacUbigeoDep
+     * @param  string    $nacUbigeoDep
      * @return Candidato
      */
     public function setNacUbigeoDep($nacUbigeoDep)
@@ -734,7 +734,7 @@ class Candidato implements JsonSerializable
     /**
      * Set nac_ubigeo_pro
      *
-     * @param string $nacUbigeoPro
+     * @param  string    $nacUbigeoPro
      * @return Candidato
      */
     public function setNacUbigeoPro($nacUbigeoPro)
@@ -757,7 +757,7 @@ class Candidato implements JsonSerializable
     /**
      * Set nac_ubigeo_dis
      *
-     * @param string $nacUbigeoDis
+     * @param  string    $nacUbigeoDis
      * @return Candidato
      */
     public function setNacUbigeoDis($nacUbigeoDis)
@@ -780,7 +780,7 @@ class Candidato implements JsonSerializable
     /**
      * Set residencia
      *
-     * @param string $residencia
+     * @param  string    $residencia
      * @return Candidato
      */
     public function setResidencia($residencia)
@@ -803,7 +803,7 @@ class Candidato implements JsonSerializable
     /**
      * Set residencia_ubigeo
      *
-     * @param string $residenciaUbigeo
+     * @param  string    $residenciaUbigeo
      * @return Candidato
      */
     public function setResidenciaUbigeo($residenciaUbigeo)
@@ -826,7 +826,7 @@ class Candidato implements JsonSerializable
     /**
      * Set residencia_ubigeo_dep
      *
-     * @param string $residenciaUbigeoDep
+     * @param  string    $residenciaUbigeoDep
      * @return Candidato
      */
     public function setResidenciaUbigeoDep($residenciaUbigeoDep)
@@ -849,7 +849,7 @@ class Candidato implements JsonSerializable
     /**
      * Set residencia_ubigeo_pro
      *
-     * @param string $residenciaUbigeoPro
+     * @param  string    $residenciaUbigeoPro
      * @return Candidato
      */
     public function setResidenciaUbigeoPro($residenciaUbigeoPro)
@@ -872,7 +872,7 @@ class Candidato implements JsonSerializable
     /**
      * Set residencia_ubigeo_dis
      *
-     * @param string $residenciaUbigeoDis
+     * @param  string    $residenciaUbigeoDis
      * @return Candidato
      */
     public function setResidenciaUbigeoDis($residenciaUbigeoDis)
@@ -895,7 +895,7 @@ class Candidato implements JsonSerializable
     /**
      * Set residencia_tiempo
      *
-     * @param string $residenciaTiempo
+     * @param  string    $residenciaTiempo
      * @return Candidato
      */
     public function setResidenciaTiempo($residenciaTiempo)
@@ -920,7 +920,6 @@ class Candidato implements JsonSerializable
      */
     public function jsonSerialize()
     {
-
         return [
             'candidato_jne_id' => $this->candidato_jne_id,
             'org_pol' => $this->org_pol,
@@ -954,7 +953,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_id
      *
-     * @param integer $postulaUbigeoId
+     * @param  integer   $postulaUbigeoId
      * @return Candidato
      */
     public function setPostulaUbigeoId($postulaUbigeoId)
@@ -967,7 +966,7 @@ class Candidato implements JsonSerializable
     /**
      * Get postula_ubigeo_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getPostulaUbigeoId()
     {
@@ -977,7 +976,7 @@ class Candidato implements JsonSerializable
     /**
      * Set postula_ubigeo_e
      *
-     * @param \Hackspace\E2014Bundle\Entity\Ubigeo $postulaUbigeoE
+     * @param  \Hackspace\E2014Bundle\Entity\Ubigeo $postulaUbigeoE
      * @return Candidato
      */
     public function setPostulaUbigeoE(\Hackspace\E2014Bundle\Entity\Ubigeo $postulaUbigeoE = null)
@@ -990,7 +989,7 @@ class Candidato implements JsonSerializable
     /**
      * Get postula_ubigeo_e
      *
-     * @return \Hackspace\E2014Bundle\Entity\Ubigeo 
+     * @return \Hackspace\E2014Bundle\Entity\Ubigeo
      */
     public function getPostulaUbigeoE()
     {

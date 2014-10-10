@@ -2,8 +2,8 @@
 
 namespace Hackspace\E2014Bundle\Tests\Util;
 
-
-class Util {
+class Util
+{
     public static function setPropertyValue($object, $property, $value)
     {
         $rObj = new \ReflectionObject($object);
@@ -20,4 +20,4 @@ class Util {
 
         return $pObj->getValue($object);
     }
-} 
+}

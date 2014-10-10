@@ -7,12 +7,11 @@ class CFacetItem
     protected $term;
     protected $count;
 
-    function __construct($term, $count)
+    public function __construct($term, $count)
     {
         $this->term = $term;
         $this->count = $count;
     }
-
 
     /**
      * @return string

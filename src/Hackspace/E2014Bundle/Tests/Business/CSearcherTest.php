@@ -11,4 +11,3 @@ class CSearcherTest extends WebTestCase
         $this->assertTrue(true);
     }
 }
- 

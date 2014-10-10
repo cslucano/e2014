@@ -43,7 +43,6 @@ class CSearcher
         return $this->cookie;
     }
 
-
     public function __construct(TransformedFinder $finder, CFacetFactory $cFacetFactory)
     {
         $this->finder = $finder;
@@ -56,8 +55,8 @@ class CSearcher
 
     /**
      * @param BasicQuery $basicQuery
-     * @param integer $page
-     * @param integer $limit
+     * @param integer    $page
+     * @param integer    $limit
      *
      * @return array
      */
@@ -75,7 +74,6 @@ class CSearcher
         $this->candidatos = $candidatos;
         $this->facetsResults = $this->cFacetFactory->getFacetsResults($this->facets);
     }
-
 
     /**
      * @param BasicQuery $basicQuery

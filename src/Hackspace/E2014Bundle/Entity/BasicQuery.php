@@ -35,11 +35,10 @@ class BasicQuery
      */
     private $location;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -49,7 +48,7 @@ class BasicQuery
     /**
      * Set query
      *
-     * @param string $query
+     * @param  string     $query
      * @return BasicQuery
      */
     public function setQuery($query)
@@ -62,7 +61,7 @@ class BasicQuery
     /**
      * Get query
      *
-     * @return string 
+     * @return string
      */
     public function getQuery()
     {
@@ -72,7 +71,7 @@ class BasicQuery
     /**
      * Set location
      *
-     * @param string $location
+     * @param  string     $location
      * @return BasicQuery
      */
     public function setLocation($location)
@@ -85,7 +84,7 @@ class BasicQuery
     /**
      * Get location
      *
-     * @return string 
+     * @return string
      */
     public function getLocation()
     {

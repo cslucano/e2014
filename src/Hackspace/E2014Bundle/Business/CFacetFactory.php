@@ -2,11 +2,10 @@
 
 namespace Hackspace\E2014Bundle\Business;
 
-
 use Elastica\Query;
 
-class CFacetFactory {
-
+class CFacetFactory
+{
     protected $facets;
 
     /**
@@ -42,8 +41,7 @@ class CFacetFactory {
     public function setToQuery($query)
     {
         /** @var CFacet $cFacet */
-        foreach ($this->facets as $cFacet)
-        {
+        foreach ($this->facets as $cFacet) {
             $cFacet->addFacet($query);
         }
     }
@@ -58,8 +56,7 @@ class CFacetFactory {
         $cookie = [];
 
         /** @var CFacet $cFacet */
-        foreach ($facets as $cFacet)
-        {
+        foreach ($facets as $cFacet) {
             $cookie[$cFacet->getKeyName()] = 1;
         }
 
@@ -70,8 +67,7 @@ class CFacetFactory {
     {
         $facetResults = [];
         /** @var CFacet $facet */
-        foreach($facets as $facet)
-        {
+        foreach ($facets as $facet) {
             $facetResults[$facet->getKeyName()] = $facet;
         }
 

@@ -20,7 +20,6 @@ class CFacetORM extends CFacet
 
     }
 
-
     public function __construct($facet_type, $key_name, $facet_name, $field, $repository, $searchBy, $nameField)
     {
         parent::__construct($facet_type, $key_name, $facet_name, $field);

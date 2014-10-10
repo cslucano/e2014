@@ -122,8 +122,6 @@ class CFacet
         return $this;
     }
 
-
-
     public function getEsResults()
     {
         return $this->es_results;

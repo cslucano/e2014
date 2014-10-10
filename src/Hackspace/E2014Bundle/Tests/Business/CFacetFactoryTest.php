@@ -8,7 +8,8 @@ use Hackspace\E2014Bundle\Business\CFacetItem;
 use Hackspace\E2014Bundle\Tests\Util\Util;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CFacetFactoryTest extends WebTestCase {
+class CFacetFactoryTest extends WebTestCase
+{
     protected $facetResult = [
         'facet_1' => [
             '_type' => 'terms',
@@ -56,7 +57,6 @@ class CFacetFactoryTest extends WebTestCase {
         ];
     }
 
-
     public function testPopulateEsFacetResults()
     {
         $client = static::createClient();
@@ -87,7 +87,6 @@ class CFacetFactoryTest extends WebTestCase {
         $this->assertEquals('term_b', $esResult->getTerm());
         $this->assertEquals(5, $esResult->getCount());
 
-
         $cFacet = $facets['facet_2'];
         $esResults = $cFacet->getEsResults();
         $this->assertEquals(5, $cFacet->getEsMissing());
@@ -101,6 +100,4 @@ class CFacetFactoryTest extends WebTestCase {
         $this->assertEquals(15, $esResult->getCount());
     }
 
-
 }
- 

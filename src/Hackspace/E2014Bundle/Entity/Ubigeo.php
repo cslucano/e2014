@@ -49,7 +49,6 @@ class Ubigeo
      */
     private $ubigeo_dis;
 
-
     /**
      * Get id
      *
@@ -63,7 +62,7 @@ class Ubigeo
     /**
      * Set ubigeo
      *
-     * @param string $ubigeo
+     * @param  string $ubigeo
      * @return Ubigeo
      */
     public function setUbigeo($ubigeo)
@@ -86,7 +85,7 @@ class Ubigeo
     /**
      * Set ubigeo_dep
      *
-     * @param string $ubigeoDep
+     * @param  string $ubigeoDep
      * @return Ubigeo
      */
     public function setUbigeoDep($ubigeoDep)
@@ -109,7 +108,7 @@ class Ubigeo
     /**
      * Set ubigeo_pro
      *
-     * @param string $ubigeoPro
+     * @param  string $ubigeoPro
      * @return Ubigeo
      */
     public function setUbigeoPro($ubigeoPro)
@@ -132,7 +131,7 @@ class Ubigeo
     /**
      * Set ubigeo_dis
      *
-     * @param string $ubigeoDis
+     * @param  string $ubigeoDis
      * @return Ubigeo
      */
     public function setUbigeoDis($ubigeoDis)

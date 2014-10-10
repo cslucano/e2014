@@ -59,7 +59,6 @@ class DefaultController extends Controller
         $candidato = $this->getDoctrine()->getRepository('HackspaceE2014Bundle:Candidato')->find($candidato_id);
 
         if (!$candidato) {
-
             return $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
                 'form' => $qFormHandler->getQForm()->createView(),
             ]);

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class QFormHandler
 {
     /** @var \Symfony\Component\Form\FormFactory $formFactory */
-    protected  $formFactory;
+    protected $formFactory;
 
     /** @var  boolean $is_valid */
     public $is_valid;
@@ -56,7 +56,6 @@ class QFormHandler
 
         return $form;
     }
-
 
     public function getDefaultFormOptions()
     {
