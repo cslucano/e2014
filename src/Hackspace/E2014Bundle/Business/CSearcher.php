@@ -15,7 +15,6 @@ class CSearcher
     protected $cFacetFactory;
     protected $candidatos;
     protected $facets;
-    protected $facetsResults;
     protected $cookie;
 
     /**
@@ -32,7 +31,6 @@ class CSearcher
     public function getFacetsResults()
     {
         return $this->cFacetFactory->getFacets();
-        return $this->facetsResults;
     }
 
     /**
@@ -48,7 +46,6 @@ class CSearcher
         $this->finder = $finder;
         $this->cFacetFactory = $cFacetFactory;
         $this->candidatos = [];
-        $this->facetsResults = [];
         $this->facets = [];
         $this->cookie = json_encode([]);
     }
@@ -72,7 +69,6 @@ class CSearcher
         $this->cFacetFactory->populateEsFacetResults($eFacets);
 
         $this->candidatos = $candidatos;
-        $this->facetsResults = $this->cFacetFactory->getFacetsResults($this->facets);
     }
 
     /**
