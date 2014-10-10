@@ -13,6 +13,7 @@ use Hackspace\E2014Bundle\Business\CFacet;
 use Hackspace\E2014Bundle\Business\CFacetFactory;
 use Hackspace\E2014Bundle\Business\CFacetItem;
 use Hackspace\E2014Bundle\Business\CSearcher;
+use Hackspace\E2014Bundle\Tests\Util\Util;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CFacetFactoryTest extends WebTestCase {
@@ -72,11 +73,11 @@ class CFacetFactoryTest extends WebTestCase {
         /** @var CFacetFactory $cFacetFactory */
         $cFacetFactory = $container->get('hackspace_e2014.c_facet_factory');
 
-        $this->setPropertyValue($cFacetFactory, 'facets', $this->facets);
+        Util::setPropertyValue($cFacetFactory, 'facets', $this->facets);
 
         $cFacetFactory->populateEsFacetResults($this->facetResult);
 
-        $facets = $this->getPropertyValue($cFacetFactory, 'facets');
+        $facets = Util::getPropertyValue($cFacetFactory, 'facets');
         $this->assertCount(2, $facets);
 
         /** @var CFacet $cFacet */
@@ -108,21 +109,6 @@ class CFacetFactoryTest extends WebTestCase {
         $this->assertEquals(15, $esResult->getCount());
     }
 
-    private function setPropertyValue($object, $property, $value)
-    {
-        $rObj = new \ReflectionObject($object);
-        $pObj = $rObj->getProperty($property);
-        $pObj->setAccessible(true);
-        $pObj->setValue($object, $value);
-    }
 
-    private function getPropertyValue($object, $property)
-    {
-        $rObj = new \ReflectionObject($object);
-        $pObj = $rObj->getProperty($property);
-        $pObj->setAccessible(true);
-
-        return $pObj->getValue($object);
-    }
 }
  
