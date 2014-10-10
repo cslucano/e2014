@@ -72,9 +72,33 @@ class CFacetFactory {
         /** @var CFacet $facet */
         foreach($facets as $facet)
         {
-            $facetResults[$facet->getKeyName()] = $facet->getEsResults();
+            $facetResults[$facet->getKeyName()] = $facet;
         }
 
         return $facetResults;
+    }
+
+    /**
+     * @param array $eFacets
+     */
+    public function populateEsFacetResults(array $eFacets)
+    {
+        foreach ($eFacets as $eFacetKey => $eFacetValue) {
+            if (array_key_exists($eFacetKey, $this->facets)) {
+                /** @var CFacet $cFacet */
+                $cFacet = $this->facets[$eFacetKey];
+
+                $cFacet
+                    ->setEsMissing($eFacetValue['missing'])
+                    ->setEsTotal($eFacetValue['total'])
+                    ->setEsOther($eFacetValue['other'])
+                ;
+
+                foreach ($eFacetValue['terms'] as $term) {
+                    $newFacetItem = new CFacetItem($term['term'], $term['count']);
+                    $cFacet->addEsResults($newFacetItem);
+                }
+            }
+        }
     }
 }

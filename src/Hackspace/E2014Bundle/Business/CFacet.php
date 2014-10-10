@@ -148,7 +148,7 @@ class CFacet
     {
         switch ($this->facet_type) {
             case CFacet::TERMS:
-                $facet = new Terms($this->facet_name);
+                $facet = new Terms($this->key_name);
                 $facet->setField($this->field);
                 $query->addFacet($facet);
                 break;

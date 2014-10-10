@@ -31,6 +31,7 @@ class CSearcher
      */
     public function getFacetsResults()
     {
+        return $this->cFacetFactory->getFacets();
         return $this->facetsResults;
     }
 
@@ -69,7 +70,7 @@ class CSearcher
         $candidatos->setMaxPerPage($limit);
         $candidatos->setCurrentPage($page);
         $eFacets = $candidatos->getAdapter()->getFacets();
-        $this->populateEsFacetResults($eFacets);
+        $this->cFacetFactory->populateEsFacetResults($eFacets);
 
         $this->candidatos = $candidatos;
         $this->facetsResults = $this->cFacetFactory->getFacetsResults($this->facets);
@@ -107,29 +108,5 @@ class CSearcher
         $this->cFacetFactory->setToQuery($query);
 
         return $query;
-    }
-
-    /**
-     * @param array $eFacets
-     */
-    public function populateEsFacetResults(array $eFacets)
-    {
-        foreach ($eFacets as $eFacetKey => $eFacetValue) {
-            if (array_key_exists($eFacetKey, $this->facets)) {
-                /** @var CFacet $cFacet */
-                $cFacet = $this->facets[$eFacetKey];
-
-                $cFacet
-                    ->setEsMissing($eFacetValue['missing'])
-                    ->setEsTotal($eFacetValue['total'])
-                    ->setEsOther($eFacetValue['other'])
-                ;
-
-                foreach ($eFacetValue['terms'] as $term) {
-                    $newFacetItem = new CFacetItem($term['term'], $term['count']);
-                    $cFacet->addEsResults($newFacetItem);
-                }
-            }
-        }
     }
 }

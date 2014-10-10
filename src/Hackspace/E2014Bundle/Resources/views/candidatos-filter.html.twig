@@ -40,11 +40,11 @@
                 <h5 class="widget-title">Refinar Búsqueda</h5>
 
                 <div class="widget-content">
-                    {%  for key, facet in facets  %}
+                    {%  for facet in facets  %}
                         <div class="facet">
-                            <h6>Por {{ key }}</h6>
+                            <h6>Por {{ facet.facetname }}</h6>
 
-                            {% for term in facet.terms %}
+                            {% for term in facet.esresults %}
                                 <div class="checkbox">
                                     <label>
                                         <input data-searchmod="" type="checkbox" checked="true" class="searchmod">
