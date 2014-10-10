@@ -27,7 +27,7 @@ class CSearcher
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getFacetsResults()
     {
@@ -48,6 +48,7 @@ class CSearcher
         $this->finder = $finder;
         $this->cFacetFactory = $cFacetFactory;
         $this->candidatos = [];
+        $this->facetsResults = [];
         $this->facets = [];
         $this->cookie = json_encode([]);
     }
@@ -68,29 +69,12 @@ class CSearcher
         $candidatos->setMaxPerPage($limit);
         $candidatos->setCurrentPage($page);
         $eFacets = $candidatos->getAdapter()->getFacets();
-        foreach($eFacets as $eFacetKey => $eFacetValue )
-        {
-            if (array_key_exists($eFacetKey, $this->facets)) {
-                $content = [];
-                $content['type']  = $eFacetValue['_type'];
-                $content['total'] = $eFacetValue['total'];
-                $content['terms'] = [];
-                foreach ($eFacetValue['terms'] as $term) {
-                    $content['terms'][] = [
-                        'term' => $term['term'],
-                        'count' => $term['count'],
-                    ];
-                }
-
-                /** @var CFacet $cFacet */
-                $cFacet = $this->facets[$eFacetKey];
-                $cFacet->setResults($content);
-            }
-        }
+        $this->populateEsFacetResults($eFacets);
 
         $this->candidatos = $candidatos;
         $this->facetsResults = $this->cFacetFactory->getFacetsResults($this->facets);
     }
+
 
     /**
      * @param BasicQuery $basicQuery
@@ -123,5 +107,29 @@ class CSearcher
         $this->cFacetFactory->setToQuery($query);
 
         return $query;
+    }
+
+    /**
+     * @param array $eFacets
+     */
+    public function populateEsFacetResults(array $eFacets)
+    {
+        foreach ($eFacets as $eFacetKey => $eFacetValue) {
+            if (array_key_exists($eFacetKey, $this->facets)) {
+                /** @var CFacet $cFacet */
+                $cFacet = $this->facets[$eFacetKey];
+
+                $cFacet
+                    ->setEsMissing($eFacetValue['missing'])
+                    ->setEsTotal($eFacetValue['total'])
+                    ->setEsOther($eFacetValue['other'])
+                ;
+
+                foreach ($eFacetValue['terms'] as $term) {
+                    $newFacetItem = new CFacetItem($term['term'], $term['count']);
+                    $cFacet->addEsResults($newFacetItem);
+                }
+            }
+        }
     }
 }

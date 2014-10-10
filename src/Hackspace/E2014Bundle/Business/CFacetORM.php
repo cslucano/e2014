@@ -14,9 +14,9 @@ class CFacetORM extends CFacet
         $this->resultKeys = $resultKeys;
     }
 
-    public function setResults($results)
+    public function setEsResults($results)
     {
-        parent::setResults($results);
+        parent::setEsResults($results);
 
     }
 

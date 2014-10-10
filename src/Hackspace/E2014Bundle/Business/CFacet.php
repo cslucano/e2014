@@ -13,7 +13,22 @@ class CFacet
     protected $key_name;
     protected $facet_name;
     protected $field;
-    protected $results;
+    protected $es_missing;
+    protected $es_total;
+    protected $es_other;
+    protected $es_results;
+
+    public function __construct($facet_type, $key_name, $facet_name, $field)
+    {
+        $this->facet_type = $facet_type;
+        $this->key_name = $key_name;
+        $this->facet_name = $facet_name;
+        $this->field = $field;
+        $this->es_missing = 0;
+        $this->es_total = 0;
+        $this->es_other = 0;
+        $this->es_results = [];
+    }
 
     /**
      * @return string
@@ -47,26 +62,83 @@ class CFacet
         return $this->key_name;
     }
 
-    public function getResults()
+    /**
+     * @return integer
+     */
+    public function getEsMissing()
     {
-        return $this->results;
+        return $this->es_missing;
     }
 
     /**
-     * @param array $results
+     * @param integer $es_missing
+     *
+     * @return $this
      */
-    public function setResults($results)
+    public function setEsMissing($es_missing)
     {
-        $this->results = $results;
+        $this->es_missing = $es_missing;
+
+        return $this;
     }
 
-    public function __construct($facet_type, $key_name, $facet_name, $field)
+    /**
+     * @return integer
+     */
+    public function getEsTotal()
     {
-        $this->facet_type = $facet_type;
-        $this->key_name = $key_name;
-        $this->facet_name = $facet_name;
-        $this->field = $field;
-        $this->results = [];
+        return $this->es_total;
+    }
+
+    /**
+     * @param integer $es_total
+     *
+     * @return $this
+     */
+    public function setEsTotal($es_total)
+    {
+        $this->es_total = $es_total;
+
+        return $this;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getEsOther()
+    {
+        return $this->es_other;
+    }
+
+    /**
+     * @param integer $es_other
+     *
+     * @return $this
+     */
+    public function setEsOther($es_other)
+    {
+        $this->es_other = $es_other;
+
+        return $this;
+    }
+
+
+
+    public function getEsResults()
+    {
+        return $this->es_results;
+    }
+
+    /**
+     * @param CFacetItem $result
+     *
+     * @return $this
+     */
+    public function addEsResults(CFacetItem $result)
+    {
+        $this->es_results[] = $result;
+
+        return $this;
     }
 
     /**
@@ -75,7 +147,7 @@ class CFacet
     public function addFacet($query)
     {
         switch ($this->facet_type) {
-            case 'terms':
+            case CFacet::TERMS:
                 $facet = new Terms($this->facet_name);
                 $facet->setField($this->field);
                 $query->addFacet($facet);
