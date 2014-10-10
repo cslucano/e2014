@@ -1,18 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cslucano
- * Date: 10/10/14
- * Time: 12:42 PM
- */
 
 namespace Hackspace\E2014Bundle\Tests\Business;
-
 
 use Hackspace\E2014Bundle\Business\CFacet;
 use Hackspace\E2014Bundle\Business\CFacetFactory;
 use Hackspace\E2014Bundle\Business\CFacetItem;
-use Hackspace\E2014Bundle\Business\CSearcher;
 use Hackspace\E2014Bundle\Tests\Util\Util;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
