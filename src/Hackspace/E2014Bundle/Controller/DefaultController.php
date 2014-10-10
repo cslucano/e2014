@@ -5,7 +5,6 @@ namespace Hackspace\E2014Bundle\Controller;
 use Hackspace\E2014Bundle\Business\CSearcher;
 use Hackspace\E2014Bundle\Business\QFormHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -17,26 +16,9 @@ class DefaultController extends Controller
 
         $qFormHandler->handleRequest($request);
 
-        $filter = [
-            'cargo' => [
-                'alcalde',
-                'regidor',
-            ],
-            'edad' => [
-                '18-20',
-                '21-30',
-                '30-50',
-                '50-más',
-            ]
-        ];
-
-        $filterJson = json_encode($filter);
-
         $response = $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
             'form' => $qFormHandler->form->createView(),
         ]);
-
-        $response->headers->setCookie(new Cookie('filtro', $filterJson));
 
         return $response;
     }
@@ -68,7 +50,7 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function infocandidatoAction(Request $request, $candidato_id, $_format)
+    public function infoCandidatoAction(Request $request, $candidato_id, $_format)
     {
         /** @var QFormHandler $qFormHandler */
         $qFormHandler = $this->get('hackspace_e2014.q_form_handler');
