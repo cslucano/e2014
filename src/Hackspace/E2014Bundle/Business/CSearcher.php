@@ -7,6 +7,8 @@ use Elastica\Query\Bool;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Hackspace\E2014Bundle\Entity\BasicQuery;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Response;
 
 class CSearcher
 {
@@ -14,8 +16,6 @@ class CSearcher
     protected $finder;
     protected $cFacetFactory;
     protected $candidatos;
-    protected $facets;
-    protected $cookie;
 
     /**
      * @return array
@@ -33,12 +33,9 @@ class CSearcher
         return $this->cFacetFactory->getFacets();
     }
 
-    /**
-     * @return string
-     */
-    public function getCookie()
+    public function setSearchCookie(Response $response)
     {
-        return $this->cookie;
+        $response->headers->setCookie(new Cookie('search-modifier-cookie', json_encode($this->cFacetFactory->getCookie())));
     }
 
     public function __construct(TransformedFinder $finder, CFacetFactory $cFacetFactory)
@@ -46,8 +43,6 @@ class CSearcher
         $this->finder = $finder;
         $this->cFacetFactory = $cFacetFactory;
         $this->candidatos = [];
-        $this->facets = [];
-        $this->cookie = json_encode([]);
     }
 
     /**
@@ -98,7 +93,6 @@ class CSearcher
 
         $query = Query::create($boolQuery);
 
-        $this->facets = $this->cFacetFactory->getFacets();
         $this->cFacetFactory->setToQuery($query);
 
         return $query;

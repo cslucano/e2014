@@ -62,20 +62,18 @@ class CFacetFactory
     }
 
     /**
-     * @param array $facets
-     *
-     * @return string
+     * @return array
      */
-    public function getCookie($facets)
+    public function getCookie()
     {
         $cookie = [];
 
         /** @var CFacet $cFacet */
-        foreach ($facets as $cFacet) {
+        foreach ($this->facets as $cFacet) {
             $cookie[$cFacet->getKeyName()] = 1;
         }
 
-        return json_encode($cookie);
+        return $cookie;
     }
 
     public function getFacetsResults($facets)
@@ -127,14 +125,14 @@ class CFacetFactory
             foreach ($entities as $key => $entity) {
                 if (array_key_exists($key, $hash)) {
                     $term = $hash[$key];
-                    $newFacetItem = new CFacetItem($term['term'], $cFacet->getShowedFieldValue($entity), $term['count']);
+                    $newFacetItem = new CFacetItem($cFacet->getKeyName() . ':' . $term['term'], $cFacet->getShowedFieldValue($entity), $term['count']);
                     $cFacetItems[] = $newFacetItem;
                 }
             }
 
         } elseif ($cFacet instanceof CFacet) {
             foreach ($eFacetValue['terms'] as $term) {
-                $newFacetItem = new CFacetItem($term['term'], $term['term'], $term['count']);
+                $newFacetItem = new CFacetItem($cFacet->getKeyName() . ':' . $term['term'], $term['term'], $term['count']);
                 $cFacetItems[] = $newFacetItem;
             }
         }

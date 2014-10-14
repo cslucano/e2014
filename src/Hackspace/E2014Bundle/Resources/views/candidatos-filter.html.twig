@@ -47,7 +47,7 @@
                             {% for term in facet.esresults %}
                                 <div class="checkbox">
                                     <label>
-                                        <input data-searchmod="" type="checkbox" checked="true" class="searchmod">
+                                        <input data-searchmod="{{ term.key }}" type="checkbox" checked="checked" class="searchmod">
                                         {{ term }}
                                         <span>
                                             ({{ term.count }})

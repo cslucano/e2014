@@ -5,7 +5,7 @@ namespace Hackspace\E2014Bundle\Tests\Business;
 use Hackspace\E2014Bundle\Business\CFacet;
 use Hackspace\E2014Bundle\Business\CFacetFactory;
 use Hackspace\E2014Bundle\Business\CFacetItem;
-use Hackspace\E2014Bundle\Tests\Util\Util;
+use Hackspace\E2014Bundle\Util\Util;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CFacetFactoryTest extends WebTestCase
@@ -100,4 +100,20 @@ class CFacetFactoryTest extends WebTestCase
         $this->assertEquals(15, $esResult->getCount());
     }
 
+    public function testGetCookie()
+    {
+        $client = static::createClient();
+        $container = $client->getContainer();
+
+        /** @var CFacetFactory $cFacetFactory */
+        $cFacetFactory = $container->get('hackspace_e2014.c_facet_factory');
+
+        Util::setPropertyValue($cFacetFactory, 'facets', $this->facets);
+
+        $cookie = $cFacetFactory->getCookie();
+
+        $this->assertCount(2, $cookie);
+        $this->assertTrue(array_key_exists('facet_1', $cookie));
+        $this->assertTrue(array_key_exists('facet_2', $cookie));
+    }
 }

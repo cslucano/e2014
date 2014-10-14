@@ -5,6 +5,7 @@ namespace Hackspace\E2014Bundle\Controller;
 use Hackspace\E2014Bundle\Business\CSearcher;
 use Hackspace\E2014Bundle\Business\QFormHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -38,16 +39,22 @@ class DefaultController extends Controller
             $candidatos = $cSearcher->getCandidatos();
             $facets = $cSearcher->getFacetsResults();
 
-            return $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', [
+            $response = $this->render('HackspaceE2014Bundle:Default:candidatos.html.twig', [
                 'form' => $qFormHandler->form->createView(),
                 'candidatos' => $candidatos,
                 'facets' => $facets,
             ]);
+
+            $cSearcher->setSearchCookie($response);
+
+            return $response;
         }
 
-        return $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
+        $response = $this->render('HackspaceE2014Bundle:Default:index.html.twig', [
             'form' => $qFormHandler->form->createView(),
         ]);
+
+        return $response;
     }
 
     public function infoCandidatoAction(Request $request, $candidato_id, $_format)
