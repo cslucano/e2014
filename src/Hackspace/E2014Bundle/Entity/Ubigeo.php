@@ -150,4 +150,15 @@ class Ubigeo
     {
         return $this->ubigeo_dis;
     }
+
+    function __toString()
+    {
+        $strUbigeo = $this->ubigeo_dep;
+
+        $strUbigeo .= (!empty($this->ubigeo_pro)) ? ', ' . $this->ubigeo_pro : '';
+
+        $strUbigeo .= (!empty($this->ubigeo_dis)) ? ', ' . $this->ubigeo_dis : '';
+
+        return $strUbigeo;
+    }
 }

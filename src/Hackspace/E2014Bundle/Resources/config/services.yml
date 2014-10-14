@@ -33,4 +33,4 @@ services:
 
     hackspace_e2014.c_facet_factory:
         class: %hackspace_e2014.c_facet_factory.class%
-        arguments: []
+        arguments: [@doctrine.orm.default_entity_manager]

@@ -1,6 +1,6 @@
 <?php
 
-namespace Hackspace\E2014Bundle\Tests\Util;
+namespace Hackspace\E2014Bundle\Util;
 
 class Util
 {
@@ -19,5 +19,13 @@ class Util
         $pObj->setAccessible(true);
 
         return $pObj->getValue($object);
+    }
+
+    public static function invokeMethod($object, $method, $args = null)
+    {
+        $rObj = new \ReflectionObject($object);
+        $mObj = $rObj->getMethod($method);
+
+        return $mObj->invoke($object, $args);
     }
 }

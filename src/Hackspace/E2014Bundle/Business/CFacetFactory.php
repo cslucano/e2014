@@ -2,6 +2,7 @@
 
 namespace Hackspace\E2014Bundle\Business;
 
+use Doctrine\ORM\EntityManager;
 use Elastica\Query;
 
 class CFacetFactory
@@ -16,23 +17,26 @@ class CFacetFactory
         return $this->facets;
     }
 
-    public function __construct()
+    public function __construct(EntityManager $em)
     {
         $this->facets = [];
+
+        $ubigeoRepo = $em->getRepository('Hackspace\E2014Bundle\Entity\Ubigeo');
 
         $cFacet = new CFacet(CFacet::TERMS, 'candidato.cargo_autoridad', 'Cargo', 'cargo_autoridad');
         $this->facets['candidato.cargo_autoridad'] = $cFacet;
 
-        $cFacet = new CFacet(CFacet::TERMS, 'candidato.postula_ubigeo_cod_dep', 'Región', 'postula_ubigeo_cod_dep');
+        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo_cod_dep', 'Región', 'postula_ubigeo_cod_dep', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
         $this->facets['candidato.postula_ubigeo_cod_dep'] = $cFacet;
 
-        $cFacet = new CFacet(CFacet::TERMS, 'candidato.postula_ubigeo_cod_pro', 'Provincia', 'postula_ubigeo_cod_pro');
+        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo_cod_pro', 'Provincia', 'postula_ubigeo_cod_pro', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
         $this->facets['candidato.postula_ubigeo_cod_pro'] = $cFacet;
 
-        $cFacet = new CFacet(CFacet::TERMS, 'candidato.postula_ubigeo_cod_dis', 'Distrito',  'postula_ubigeo_cod_dis');
+        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo_cod_dis', 'Distrito', 'postula_ubigeo_cod_dis', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
         $this->facets['candidato.postula_ubigeo_cod_dis'] = $cFacet;
 
     }
+
     /**
      * @param Query $query
      *
@@ -87,14 +91,49 @@ class CFacetFactory
                 $cFacet
                     ->setEsMissing($eFacetValue['missing'])
                     ->setEsTotal($eFacetValue['total'])
-                    ->setEsOther($eFacetValue['other'])
-                ;
+                    ->setEsOther($eFacetValue['other']);
 
-                foreach ($eFacetValue['terms'] as $term) {
-                    $newFacetItem = new CFacetItem($term['term'], $term['count']);
-                    $cFacet->addEsResults($newFacetItem);
-                }
+                $this->populateEsFacetItem($cFacet, $eFacetValue);
             }
         }
+    }
+
+    private function populateEsFacetItem($cFacet, $eFacetValue)
+    {
+        $cFacetItems = [];
+
+        if ($cFacet instanceOf CFacetORM) {
+            $hash = [];
+            $hashKeys = [];
+
+            foreach ($eFacetValue['terms'] as $term) {
+                $hash[$term['term']] = $term;
+                $hashKeys[] = $term['term'];
+            }
+
+            $entities = $cFacet->getByKeys($hashKeys);
+
+            foreach ($entities as $key => $entity) {
+                if (array_key_exists($key, $hash)) {
+                    $term = $hash[$key];
+                    $newFacetItem = new CFacetItem($term['term'], $cFacet->getShowedFieldValue($entity), $term['count']);
+                    $cFacetItems[] = $newFacetItem;
+                }
+            }
+
+        } else if ($cFacet instanceOf CFacet) {
+            foreach ($eFacetValue['terms'] as $term) {
+                $newFacetItem = new CFacetItem($term['term'], $term['term'], $term['count']);
+                $cFacetItems[] = $newFacetItem;
+            }
+        }
+
+
+        array_map(
+            function ($item) use ($cFacet) {
+                $cFacet->addEsResults($item);
+            },
+            $cFacetItems
+        );
     }
 }
