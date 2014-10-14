@@ -113,7 +113,7 @@ class CFacetFactory
     {
         $cFacetItems = [];
 
-        if ($cFacet instanceOf CFacetORM) {
+        if ($cFacet instanceof CFacetORM) {
             $hash = [];
             $hashKeys = [];
 
@@ -132,13 +132,12 @@ class CFacetFactory
                 }
             }
 
-        } else if ($cFacet instanceOf CFacet) {
+        } elseif ($cFacet instanceof CFacet) {
             foreach ($eFacetValue['terms'] as $term) {
                 $newFacetItem = new CFacetItem($term['term'], $term['term'], $term['count']);
                 $cFacetItems[] = $newFacetItem;
             }
         }
-
 
         array_map(
             function ($item) use ($cFacet) {

@@ -75,9 +75,7 @@ class CFacetItem
         return $this;
     }
 
-
-
-    function __toString()
+    public function __toString()
     {
         return $this->term;
     }

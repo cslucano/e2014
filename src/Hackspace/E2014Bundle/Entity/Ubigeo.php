@@ -151,7 +151,7 @@ class Ubigeo
         return $this->ubigeo_dis;
     }
 
-    function __toString()
+    public function __toString()
     {
         $strUbigeo = $this->ubigeo_dep;
 

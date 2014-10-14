@@ -36,13 +36,12 @@ class CFacetORM extends CFacet
 
         $entities = $this->repository->findBy([$this->searchField => $keys]);
 
-
         if ($entities) {
             /** @var Entity $entity */
             foreach ($entities as $entity) {
                 $rObj = new ReflectionObject($entity);
                 $mObj = $rObj->getMethod($this->searchMethod);
-                $dbKey = (string)$mObj->invoke($entity);
+                $dbKey = (string) $mObj->invoke($entity);
 
                 $hash[$dbKey] = $entity;
             }
