@@ -52,4 +52,9 @@ class CFacetItem
 
         return $this;
     }
+
+    function __toString()
+    {
+        return $this->term;
+    }
 }
