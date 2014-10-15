@@ -70,7 +70,10 @@ class CFacetFactory
 
         /** @var CFacet $cFacet */
         foreach ($this->facets as $cFacet) {
-            $cookie[$cFacet->getKeyName()] = 1;
+            /** @var CFacetItem $cFacetItem */
+            foreach ($cFacet->getEsResults() as $cFacetItem) {
+                $cookie[$cFacetItem->getKey()] = 1;
+            }
         }
 
         return $cookie;

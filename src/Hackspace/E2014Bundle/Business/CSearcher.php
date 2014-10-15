@@ -7,15 +7,20 @@ use Elastica\Query\Bool;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Hackspace\E2014Bundle\Entity\BasicQuery;
 use Pagerfanta\Pagerfanta;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 class CSearcher
 {
+    const SEARCH_COOKIE_KEY = 'search-modifier-cookie';
     /** @var  TransformedFinder $finder */
     protected $finder;
     protected $cFacetFactory;
     protected $candidatos;
+    protected $cookie;
 
     /**
      * @return array
@@ -35,14 +40,15 @@ class CSearcher
 
     public function setSearchCookie(Response $response)
     {
-        $response->headers->setCookie(new Cookie('search-modifier-cookie', json_encode($this->cFacetFactory->getCookie())));
+        $response->headers->setCookie(new Cookie($this::SEARCH_COOKIE_KEY, json_encode($this->cFacetFactory->getCookie())));
     }
 
-    public function __construct(TransformedFinder $finder, CFacetFactory $cFacetFactory)
+    public function __construct(TransformedFinder $finder, CFacetFactory $cFacetFactory, RequestStack $requestStack)
     {
         $this->finder = $finder;
         $this->cFacetFactory = $cFacetFactory;
         $this->candidatos = [];
+        $this->cookie = json_decode($requestStack->getCurrentRequest()->cookies->get($this::SEARCH_COOKIE_KEY));
     }
 
     /**

@@ -109,11 +109,12 @@ class CFacetFactoryTest extends WebTestCase
         $cFacetFactory = $container->get('hackspace_e2014.c_facet_factory');
 
         Util::setPropertyValue($cFacetFactory, 'facets', $this->facets);
+        $cFacetFactory->populateEsFacetResults($this->facetResult);
 
         $cookie = $cFacetFactory->getCookie();
 
-        $this->assertCount(2, $cookie);
-        $this->assertTrue(array_key_exists('facet_1', $cookie));
-        $this->assertTrue(array_key_exists('facet_2', $cookie));
+        $this->assertCount(4, $cookie);
+        $this->assertTrue(array_key_exists('facet_1:term_a', $cookie));
+        $this->assertTrue(array_key_exists('facet_2:term_x', $cookie));
     }
 }
