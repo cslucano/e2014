@@ -17,6 +17,15 @@ class CFacetFactory
         return $this->facets;
     }
 
+    public function getFacet($facet)
+    {
+        if (array_key_exists($facet, $this->facets)) {
+            return $this->facets[$facet];
+        }
+
+        return null;
+    }
+
     public function __construct(EntityManager $em)
     {
         $this->facets = [];
@@ -62,32 +71,28 @@ class CFacetFactory
     }
 
     /**
+     * @param array $cookie
+     *
      * @return array
      */
-    public function getCookie()
+    public function getCookie($cookie)
     {
-        $cookie = [];
+        $newCookie = [];
 
         /** @var CFacet $cFacet */
         foreach ($this->facets as $cFacet) {
             /** @var CFacetItem $cFacetItem */
             foreach ($cFacet->getEsResults() as $cFacetItem) {
-                $cookie[$cFacetItem->getKey()] = 1;
+                if ( array_key_exists($cFacetItem->getKey(), $cookie) ) {
+                    $newCookie[$cFacetItem->getKey()] = $cookie[$cFacetItem->getKey()];
+                    //$newCookie[$cFacetItem->getKey()] = 0;
+                } else {
+                    $newCookie[$cFacetItem->getKey()] = 1;
+                }
             }
         }
 
-        return $cookie;
-    }
-
-    public function getFacetsResults($facets)
-    {
-        $facetResults = [];
-        /** @var CFacet $facet */
-        foreach ($facets as $facet) {
-            $facetResults[$facet->getKeyName()] = $facet;
-        }
-
-        return $facetResults;
+        return $newCookie;
     }
 
     /**
