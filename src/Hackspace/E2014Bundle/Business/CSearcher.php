@@ -89,13 +89,14 @@ class CSearcher
     {
         $q_query = $basicQuery->getQuery();
         $q_location = $basicQuery->getLocation();
+        $matchAll = empty($q_query) && empty($q_location);
 
-        if (empty($q_query) && empty($q_location)) {
+        if ($matchAll) {
             $baseQuery = new MatchAll();
         } else {
             $baseQuery = new Bool();
 
-            if ( ! empty( $query) ) {
+            if ( ! empty($q_query) ) {
                 $mainQuery = new Query\QueryString($basicQuery->getQuery());
                 $mainQuery->setFields([
                     'appaterno',
@@ -105,7 +106,7 @@ class CSearcher
                 $baseQuery->addMust($mainQuery);
             }
 
-            if ( ! empty( $q_location ) ) {
+            if ( ! empty($q_location) ) {
                 $locationQuery = new Query\QueryString($basicQuery->getLocation());
                 $locationQuery->setFields([
                     'postula_ubigeo_dep',

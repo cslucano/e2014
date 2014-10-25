@@ -36,18 +36,18 @@ function checkSearch() {
 
     var facets = getFacets();
 
-    if (
-        (searchTerm.trim() == "" && locationTerm.trim() == "") &&
-        !facets.length
-        ) {
-        node_query.focus();
-        node_query.css("border-color", "#ff0039");
-        $('#term-required').show();
-
-        // stop form submission
-        //return false;
-    }
-    else {
+    //if (
+    //    (searchTerm.trim() == "" && locationTerm.trim() == "") &&
+    //    !facets.length
+    //    ) {
+    //    node_query.focus();
+    //    node_query.css("border-color", "#ff0039");
+    //    $('#term-required').show();
+    //
+    //    // stop form submission
+    //    return false;
+    //}
+    //else {
 
         try {
             //console.log('checkSearch: before GA');
@@ -91,7 +91,7 @@ function checkSearch() {
         }
 
         return true;
-    }
+    //}
 }
 
 /* Get checkbox states for each on-page checkbox with data-searchmod attribute.
@@ -247,7 +247,7 @@ $(document).ready(function () {
 
     $("#bq_query").change(function(event) {
         if (
-            (($("#bq_query").val().trim() != searchval) && searchval != '')
+            ($("#bq_query").val().trim() != searchval)
         ) {
             searchchanged = true;
         }
@@ -257,7 +257,7 @@ $(document).ready(function () {
     });
 
     $("#bq_location").change(function(event) {
-        if (($("#bq_location").val().trim() != searchval) && searchval != '') {
+        if ($("#bq_location").val().trim() != searchval) {
             searchchanged = true;
         }
         else {
