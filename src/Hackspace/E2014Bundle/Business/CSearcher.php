@@ -50,7 +50,12 @@ class CSearcher
         $this->finder = $finder;
         $this->cFacetFactory = $cFacetFactory;
         $this->candidatos = [];
-        $this->cookie = json_decode($requestStack->getCurrentRequest()->cookies->get($this::SEARCH_COOKIE_KEY), true);
+        $cookie = $requestStack->getCurrentRequest()->cookies->get($this::SEARCH_COOKIE_KEY);
+        if ($cookie && is_array($cookie)) {
+            $this->cookie = json_decode($cookie, true);
+        } else {
+            $this->cookie = [];
+        }
     }
 
     /**
@@ -103,6 +108,8 @@ class CSearcher
 
         $this->setFilters($query);
 
+        $this->setSortFields($query);
+
         $this->cFacetFactory->setToQuery($query);
 
         return $query;
@@ -147,7 +154,16 @@ class CSearcher
             }
 
 
-            $query->setFilter($boolAnd);
+            $query->setPostFilter($boolAnd);
         }
+    }
+
+    public function setSortFields(Query $query)
+    {
+        $query->setSort(
+            [
+                'postula_ubigeo' => ['order' => 'asc']
+            ]
+        );
     }
 }
