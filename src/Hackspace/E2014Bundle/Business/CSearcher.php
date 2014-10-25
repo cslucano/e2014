@@ -8,6 +8,7 @@ use Elastica\Filter\Missing;
 use Elastica\Filter\Term;
 use Elastica\Query;
 use Elastica\Query\Bool;
+use Elastica\Query\MatchAll;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Hackspace\E2014Bundle\Entity\BasicQuery;
 use Pagerfanta\Pagerfanta;
@@ -51,7 +52,7 @@ class CSearcher
         $this->cFacetFactory = $cFacetFactory;
         $this->candidatos = [];
         $cookie = $requestStack->getCurrentRequest()->cookies->get($this::SEARCH_COOKIE_KEY);
-        if ($cookie && is_array($cookie)) {
+        if ($cookie) {
             $this->cookie = json_decode($cookie, true);
         } else {
             $this->cookie = [];
@@ -86,25 +87,37 @@ class CSearcher
      */
     public function getQuery($basicQuery)
     {
-        $boolQuery = new Bool();
+        $q_query = $basicQuery->getQuery();
+        $q_location = $basicQuery->getLocation();
 
-        if ( ! empty( $basicQuery->getQuery() ) ) {
-            $mainQuery = new Query\QueryString($basicQuery->getQuery());
-            $boolQuery->addMust($mainQuery);
+        if (empty($q_query) && empty($q_location)) {
+            $baseQuery = new MatchAll();
+        } else {
+            $baseQuery = new Bool();
+
+            if ( ! empty( $query) ) {
+                $mainQuery = new Query\QueryString($basicQuery->getQuery());
+                $mainQuery->setFields([
+                    'appaterno',
+                    'apmaterno',
+                    'nombres',
+                ]);
+                $baseQuery->addMust($mainQuery);
+            }
+
+            if ( ! empty( $q_location ) ) {
+                $locationQuery = new Query\QueryString($basicQuery->getLocation());
+                $locationQuery->setFields([
+                    'postula_ubigeo_dep',
+                    'postula_ubigeo_pro',
+                    'postula_ubigeo_dis',
+                ]);
+
+                $baseQuery->addMust($locationQuery);
+            }
         }
 
-        if ( ! empty( $basicQuery->getLocation() ) ) {
-            $locationQuery = new Query\QueryString($basicQuery->getLocation());
-            $locationQuery->setFields([
-                'postula_ubigeo_dep',
-                'postula_ubigeo_pro',
-                'postula_ubigeo_dis',
-            ]);
-
-            $boolQuery->addMust($locationQuery);
-        }
-
-        $query = Query::create($boolQuery);
+        $query = Query::create($baseQuery);
 
         $this->setFilters($query);
 
@@ -135,7 +148,6 @@ class CSearcher
                     $filters[$cFacet->getField()][] = $filter;
                 }
             }
-
         }
 
         if (count($filters) > 0 ) {

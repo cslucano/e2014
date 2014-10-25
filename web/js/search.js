@@ -37,14 +37,15 @@ function checkSearch() {
     var facets = getFacets();
 
     if (
-        (searchTerm.trim() == "" && locationTerm.trim() == "") && !facets.length
+        (searchTerm.trim() == "" && locationTerm.trim() == "") &&
+        !facets.length
         ) {
         node_query.focus();
         node_query.css("border-color", "#ff0039");
         $('#term-required').show();
 
         // stop form submission
-        return false;
+        //return false;
     }
     else {
 
@@ -83,7 +84,7 @@ function checkSearch() {
             // encode modifiers with base64 to avoid bugs in qs updates
             var ex = window.btoa(JSON.stringify(exclusions));
             ex = ex.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
-            var newuri = updateQueryStringParameter({'ex': ex, 'q' : searchTerm, 'page' : '1', 'order_by' : ordering});
+            var newuri = updateQueryStringParameter({'ex': ex, 'bq[query]' : searchTerm, 'bq[location]' : locationTerm, 'page' : '1', 'order_by' : ordering});
 
             window.location.href = newuri;
             return false;

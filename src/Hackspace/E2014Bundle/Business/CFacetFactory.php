@@ -38,26 +38,17 @@ class CFacetFactory
         $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo', 'Lugar al que postula', 'postula_ubigeo', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
         $this->facets['candidato.postula_ubigeo'] = $cFacet;
 
-//        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo_cod_dep', 'Región', 'postula_ubigeo_cod_dep', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
-//        $this->facets['candidato.postula_ubigeo_cod_dep'] = $cFacet;
+//        $cFacet = new CFacet(CFacet::TERMS, 'candidato.nac_pais', 'País de Nac.', 'nac_pais');
+//        $this->facets['candidato.nac_pais'] = $cFacet;
 //
-//        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo_cod_pro', 'Provincia', 'postula_ubigeo_cod_pro', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
-//        $this->facets['candidato.postula_ubigeo_cod_pro'] = $cFacet;
+//        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.nac_ubigeo', 'Ubigeo de Nac.', 'nac_ubigeo', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
+//        $this->facets['candidato.nac_ubigeo'] = $cFacet;
 //
-//        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.postula_ubigeo_cod_dis', 'Distrito', 'postula_ubigeo_cod_dis', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
-//        $this->facets['candidato.postula_ubigeo_cod_dis'] = $cFacet;
-
-        $cFacet = new CFacet(CFacet::TERMS, 'candidato.nac_pais', 'País de Nac.', 'nac_pais');
-        $this->facets['candidato.nac_pais'] = $cFacet;
-
-        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.nac_ubigeo', 'Ubigeo de Nac.', 'nac_ubigeo', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
-        $this->facets['candidato.nac_ubigeo'] = $cFacet;
-
-        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.residencia_ubigeo', 'Ubigeo de Residencia', 'residencia_ubigeo', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
-        $this->facets['candidato.residencia_ubigeo'] = $cFacet;
-
-        $cFacet = new CFacet(CFacet::TERMS, 'candidato.residencia_tiempo', 'Tiempo de Residencia', 'residencia_tiempo');
-        $this->facets['candidato.residencia_tiempo'] = $cFacet;
+//        $cFacet = new CFacetORM(CFacet::TERMS, 'candidato.residencia_ubigeo', 'Ubigeo de Residencia', 'residencia_ubigeo', $ubigeoRepo, 'ubigeo', 'getUbigeo', '__toString');
+//        $this->facets['candidato.residencia_ubigeo'] = $cFacet;
+//
+//        $cFacet = new CFacet(CFacet::TERMS, 'candidato.residencia_tiempo', 'Tiempo de Residencia', 'residencia_tiempo');
+//        $this->facets['candidato.residencia_tiempo'] = $cFacet;
     }
 
     /**

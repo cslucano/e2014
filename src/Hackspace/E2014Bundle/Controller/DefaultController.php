@@ -45,8 +45,6 @@ class DefaultController extends Controller
                 'facets' => $facets,
             ]);
 
-            $cSearcher->setSearchCookie($response);
-
             return $response;
         }
 
