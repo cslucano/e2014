@@ -19,15 +19,12 @@ fos_elastica:
                         postula_ubigeo_cod_dep: ~
                         postula_ubigeo_cod_pro: ~
                         postula_ubigeo_cod_dis: ~
-                        #postula_ubigeo_dep:
-                        #    analyzer : comma
-                        #    boost: 10
-                        #postula_ubigeo_pro:
-                        #    analyzer : comma
-                        #    boost: 10
-                        #postula_ubigeo_dis:
-                        #    analyzer : comma
-                        #    boost: 10
+                        postula_ubigeo_dep: ~
+                            #analyzer : comma
+                        postula_ubigeo_pro: ~
+                            #analyzer : comma
+                        postula_ubigeo_dis: ~
+                            #analyzer : comma
                         forma_designacion: ~
                         dni: ~
                         appaterno:

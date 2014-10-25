@@ -148,6 +148,7 @@ class CFacet
             case CFacet::TERMS:
                 $facet = new Terms($this->key_name);
                 $facet->setField($this->field);
+                $facet->setSize(20000);
                 $query->addFacet($facet);
                 break;
         }

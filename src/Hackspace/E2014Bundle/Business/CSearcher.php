@@ -96,8 +96,9 @@ class CSearcher
         } else {
             $baseQuery = new Bool();
 
-            if ( ! empty($q_query) ) {
+            if (!empty($q_query)) {
                 $mainQuery = new Query\QueryString($basicQuery->getQuery());
+                $mainQuery->setDefaultOperator('AND');
                 $mainQuery->setFields([
                     'appaterno',
                     'apmaterno',
@@ -106,15 +107,15 @@ class CSearcher
                 $baseQuery->addMust($mainQuery);
             }
 
-            if ( ! empty($q_location) ) {
-                $locationQuery = new Query\QueryString($basicQuery->getLocation());
-                $locationQuery->setFields([
+            if (!empty($q_location)) {
+                $locationDepQuery = new Query\QueryString($basicQuery->getLocation());
+                $locationDepQuery->setDefaultOperator('AND');
+                $locationDepQuery->setFields([
                     'postula_ubigeo_dep',
                     'postula_ubigeo_pro',
                     'postula_ubigeo_dis',
                 ]);
-
-                $baseQuery->addMust($locationQuery);
+                $baseQuery->addMust($locationDepQuery);
             }
         }
 
