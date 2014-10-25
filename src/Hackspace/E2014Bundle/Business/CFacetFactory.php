@@ -133,6 +133,8 @@ class CFacetFactory
 
             $entities = $cFacet->getByKeys($hashKeys);
 
+            ksort($entities);
+
             foreach ($entities as $key => $entity) {
                 if (array_key_exists($key, $hash)) {
                     $term = $hash[$key];
@@ -140,7 +142,6 @@ class CFacetFactory
                     $cFacetItems[] = $newFacetItem;
                 }
             }
-
         } elseif ($cFacet instanceof CFacet) {
             foreach ($eFacetValue['terms'] as $term) {
                 $newFacetItem = new CFacetItem($cFacet->getKeyName() . ':' . $term['term'], $term['term'], $term['count']);
