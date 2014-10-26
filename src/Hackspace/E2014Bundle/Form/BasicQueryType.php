@@ -29,6 +29,13 @@ class BasicQueryType extends AbstractType
                     'placeholder' => 'region, distrito, ciudad, ...',
                 ]
             ])
+            ->add('name', 'text', [
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'nombre de candidato',
+                ]
+            ])
         ;
     }
 

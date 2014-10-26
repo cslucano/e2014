@@ -19,17 +19,11 @@
                         #}
 
                         {{ form_widget(form.query, { 'attr' : { 'class' : 'form-control mb10'}}) }}
-                        {#
-                        <input type="text" class="form-control mt10" placeholder="Location">
-                        #}
 
                         <span>en</span>
 
                         {{ form_widget(form.location, { 'attr' : { 'class' : 'form-control mt10 mb15'}}) }}
-                        {#
-                        <input type="text" class="form-control mt10" placeholder="Location">
-                        <input type="text" class="form-control mt15 mb15" placeholder="Industry / Role">
-                        #}
+                        {{ form_widget(form.name, { 'attr' : { 'class' : 'form-control mt10 mb15'}}) }}
 
                         <input id="bq_searchbutton" type="submit" class="btn btn-default" value="Buscar" onclick="return checkSearch()">
                     </form>

@@ -31,23 +31,24 @@ function checkSearch() {
     console.log('checkSearch: begin');
     var node_query = $('#bq_query');
     var node_location = $('#bq_location');
+    var node_name = $('#bq_name');
     var searchTerm = node_query.val();
     var locationTerm = node_location.val();
+    var nameTerm = node_name.val();
 
     var facets = getFacets();
 
-    //if (
-    //    (searchTerm.trim() == "" && locationTerm.trim() == "") &&
-    //    !facets.length
-    //    ) {
-    //    node_query.focus();
-    //    node_query.css("border-color", "#ff0039");
-    //    $('#term-required').show();
-    //
-    //    // stop form submission
-    //    return false;
-    //}
-    //else {
+    if (
+        (searchTerm.trim() == "" && locationTerm.trim() == "" && nameTerm.trim() == "") &&
+        !facets.length
+        ) {
+        node_query.focus();
+        node_query.css("border-color", "#ff0039");
+        $('#term-required').show();
+
+        // stop form submission
+        return false;
+    } else {
 
         try {
             //console.log('checkSearch: before GA');
@@ -84,14 +85,14 @@ function checkSearch() {
             // encode modifiers with base64 to avoid bugs in qs updates
             var ex = window.btoa(JSON.stringify(exclusions));
             ex = ex.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
-            var newuri = updateQueryStringParameter({'ex': ex, 'bq[query]' : searchTerm, 'bq[location]' : locationTerm, 'page' : '1', 'order_by' : ordering});
+            var newuri = updateQueryStringParameter({'ex': ex, 'bq[query]' : searchTerm, 'bq[location]' : locationTerm, 'bq[name]' : nameTerm, 'page' : '1', 'order_by' : ordering});
 
             window.location.href = newuri;
             return false;
         }
 
         return true;
-    //}
+    }
 }
 
 /* Get checkbox states for each on-page checkbox with data-searchmod attribute.
@@ -243,11 +244,12 @@ $(document).ready(function () {
     // if user changes search terms, reset search filters
     searchval = $("#bq_query").val().trim();
     locationval = $("#bq_location").val().trim();
+    nameval = $("#bq_name").val().trim();
     searchchanged = false;
 
     $("#bq_query").change(function(event) {
         if (
-            ($("#bq_query").val().trim() != searchval)
+            ($("#bq_query").val().trim() != searchval) && searchval != ''
         ) {
             searchchanged = true;
         }
@@ -257,7 +259,9 @@ $(document).ready(function () {
     });
 
     $("#bq_location").change(function(event) {
-        if ($("#bq_location").val().trim() != searchval) {
+        if (
+            ($("#bq_location").val().trim() != locationval) && locationval != ''
+        ) {
             searchchanged = true;
         }
         else {
@@ -265,6 +269,16 @@ $(document).ready(function () {
         }
     });
 
+    $("#bq_name").change(function(event) {
+        if (
+            ($("#bq_name").val().trim() != nameval) && nameval != ''
+        ) {
+            searchchanged = true;
+        }
+        else {
+            searchchanged = false;
+        }
+    });
 
     // Facet mouseover UI and 'only' selection controls
     $(".facetrow").hover(

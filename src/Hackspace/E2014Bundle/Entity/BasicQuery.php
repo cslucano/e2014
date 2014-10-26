@@ -36,6 +36,13 @@ class BasicQuery
     private $location;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", nullable=true,length=255)
+     */
+    private $name;
+
+    /**
      * Get id
      *
      * @return integer
@@ -89,5 +96,30 @@ class BasicQuery
     public function getLocation()
     {
         return $this->location;
+    }
+
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
