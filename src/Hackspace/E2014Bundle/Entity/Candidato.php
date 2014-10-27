@@ -995,4 +995,14 @@ class Candidato implements JsonSerializable
     {
         return $this->postula_ubigeo_e;
     }
+
+    /**
+     * get Photo Url
+     *
+     * @return string
+     */
+    public function getPhotoFilename()
+    {
+       return $this->candidato_jne_id . '.jpg';
+    }
 }

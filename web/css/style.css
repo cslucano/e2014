@@ -3439,14 +3439,19 @@ input[type="button"].btn-block {
 	margin-right: 20px;
 }
 
-.jobs-item.with-thumb .thumb,
+.jobs-item.with-thumb .thumb{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    display: block;
+}
+
 .jobs-single-item .thumb {
 	display: block;
 }
 
 .jobs-item .thumb img {
-	width: 80px;
-	height: auto;
+	width: 100%;
 }
 
 .jobs-item .date {

@@ -62,7 +62,7 @@
 
                 {%  for candidato in candidatos %}
                     <div class="jobs-item with-thumb">
-                        <div class="thumb"><img src="{{ asset(random(['img/content/bus-00.png', 'img/content/bus-01.png', 'img/content/bus-02.png', 'img/content/bus-03.png'])) }}" alt=""></div>
+                        <div class="thumb"><img src="{{ asset('fotos/fotos_80_80/' ~ candidato.photofilename  ) }}" alt=""></div>
                         <div class="clearfix visible-xs"></div>
                         <div class="date">{{ candidato.dni }} <span>*</span></div>
                         <h6 class="title">
