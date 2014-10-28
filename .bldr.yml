@@ -4,25 +4,31 @@ bldr:
     profiles: 
         dumpDb:
             description: Dump postgres db 
-            tasks:
+            jobs:
                 - setPgPassword
                 - dumpPgDb
                 - moveDumpFile
         dropDb:
             description: Drop postgres db
-            tasks:
+            jobs:
                 - setPgPassword
                 - dropPgDb
         restoreDb:
             description: Restore postgres db
-            tasks:
+            jobs:
                 - setPgPassword
                 - createPgDb
                 - restorePgDb
-    tasks:
+        dumpESIndex:
+            description: Dump Elasticsearch index
+            jobs:
+                - dumpESIndex
+                - compressESIndex
+                - moveESIndex
+    jobs:
         createPgDb:
             description: Create Pg Database Task
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: createdb
@@ -34,7 +40,7 @@ bldr:
                         - e2014
         dropPgDb:
             description: Drop Pg Database Task
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: dropdb
@@ -46,7 +52,7 @@ bldr:
                         - e2014
         dumpPgDb:
             description: Dump Pg Database Task
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: pg_dump
@@ -63,7 +69,7 @@ bldr:
                         - e2014
         restorePgDb:
             description: Restore Pg Database Task
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: pg_restore
@@ -78,7 +84,7 @@ bldr:
                         - $HOME$/Dropbox/dbs/e2014/e2014.dump
         setPgPassword:
             description: set PGPASSWORD variable
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: export
@@ -86,7 +92,7 @@ bldr:
                         - PGPASSWORD="e2014"
         moveDumpFile:
             description: Move Db Dump File to Dropbox
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: mv
@@ -95,7 +101,7 @@ bldr:
                         - $HOME$/Dropbox/dbs/e2014/
         compressDumpFile:
             description: Compress DbDump file
-            calls:
+            tasks:
                 -
                     type: exec
                     executable: tar
@@ -103,3 +109,32 @@ bldr:
                         - czvf
                         - $HOME$/Dropbox/dbs/e2014/e2014.dump.tar.gz
                         - $HOME$/Dropbox/dbs/e2014/e2014.dump
+        dumpESIndex:
+            description: Dump ES Index to Copy Directory
+            tasks:
+                -
+                    type: exec
+                    executable: elasticdump
+                    arguments:
+                        - --input=http://localhost:9200/e2014
+                        - --output=e2014EsIndex.json
+        compressESIndex:
+            description: Compress Elasticsearch Dump file
+            tasks:
+                -
+                    type: exec
+                    executable: tar
+                    arguments:
+                        - czvf
+                        - e2014EsIndex.json.tar.gz
+                        - e2014EsIndex.json
+        moveESIndex:
+            description: Move Elasticsearch Dump File to Copy
+            tasks:
+                -
+                    type: exec
+                    executable: mv
+                    arguments:
+                        - e2014EsIndex.json.tar.gz
+                        - $HOME$/Copy/e2014/e2014EsIndex.json.tar.gz
+
