@@ -64,7 +64,7 @@
                     <div class="jobs-item with-thumb">
                         <div class="thumb"><img src="{{ asset('fotos/fotos_80_80/' ~ candidato.photofilename  ) }}" alt=""></div>
                         <div class="clearfix visible-xs"></div>
-                        <div class="date">{{ candidato.dni }} <span>*</span></div>
+                        <div class="date">{{ candidato.dni }} <span>DNI</span></div>
                         <h6 class="title">
                             <a href="{{ path('_infocandidato', { 'candidato_id' : candidato.id }) }}">
                                 {{ candidato.appaterno }} {{ candidato.apmaterno }}, {{ candidato.nombres }}
@@ -80,9 +80,61 @@
                             <li><a href="#" class="btn btn-gray fa fa-link"></a></li>
                         </ul>
 
-                        <p class="description">{{ candidato.formadesignacion }}. <a href="#" class="read-more">Más</a></p>
+                        <p class="description">{{ candidato.postulaubigeodep }}{% if candidato.postulaubigeopro %}, {{ candidato.postulaubigeodis }}{%  endif %}{% if candidato.postulaubigeodis %}, {{ candidato.postulaubigeodis }}{% endif %}</p>
+                        <p class="description">{{ candidato.orgpol }}.<a href="#" class="read-more">Más</a></p>
+
+                        <br>
 
                         <div class="content">
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Organización Política</strong></div>
+                                <div class="col-xs-8"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Cargo al que Postula</strong></div>
+                                <div class="col-xs-8">{{ candidato.cargoautoridad }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Ap. Paterno</strong></div>
+                                <div class="col-xs-8">{{ candidato.appaterno }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Ap. Materno</strong></div>
+                                <div class="col-xs-8">{{ candidato.apmaterno }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Nombres</strong></div>
+                                <div class="col-xs-8">{{ candidato.nombres }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>DNI</strong></div>
+                                <div class="col-xs-8">{{ candidato.dni }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Género</strong></div>
+                                <div class="col-xs-8">{% if candidato.sexo == 1 %}MASCULINO{% elseif candidato.sexo == 2 %}FEMENINO{% else %}{% endif %}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Fecha de Nacimiento</strong></div>
+                                <div class="col-xs-8">{{ candidato.fdn|date }}{{ candidato.fdn }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Lugar de Nacimiento</strong></div>
+                                <div class="col-xs-8">{{ candidato.nacubigeodep }}, {{ candidato.nacubigeopro }}, {{ candidato.nacubigeodis }} ({{ candidato.nacubigeo }})</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>País de Nacimiento</strong></div>
+                                <div class="col-xs-8">{{ candidato.nacpais }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Lugar de Residencia</strong></div>
+                                <div class="col-xs-8">{{ candidato.residenciaubigeodep }}, {{ candidato.residenciaubigeopro }}, {{ candidato.residenciaubigeodis }} ({{ candidato.residenciaubigeo }})</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4"><strong>Tiempo de Residencia</strong></div>
+                                <div class="col-xs-8">{{ candidato.residenciatiempo }}</div>
+                            </div>
+                            {#
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, nihil, dolores, culpa ullam vero ipsum placeat accusamus nemo ipsa cupiditate id molestiae consectetur quae pariatur repudiandae vel ex quaerat nam iusto aliquid laborum quia adipisci aut ut impedit obcaecati nisi deleniti tempore maxime sequi fugit reiciendis libero quo. Rerum, assumenda.</p>
 
                             <h5>Required Skills</h5>
@@ -136,6 +188,7 @@
                                     <li><a href="#" class="btn btn-gray fa fa-google-plus"></a></li>
                                 </ul>
                             </div>
+                            #}
                         </div>
                     </div>
                 {% endfor %}
