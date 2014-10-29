@@ -111,6 +111,10 @@
                                 <div class="col-xs-8">{{ candidato.dni }}</div>
                             </div>
                             <div class="row">
+                                <div class="col-xs-4"><strong>Email</strong></div>
+                                <div class="col-xs-8">{{ candidato.email }}</div>
+                            </div>
+                            <div class="row">
                                 <div class="col-xs-4"><strong>Género</strong></div>
                                 <div class="col-xs-8">{% if candidato.sexo == 1 %}MASCULINO{% elseif candidato.sexo == 2 %}FEMENINO{% else %}{% endif %}</div>
                             </div>
