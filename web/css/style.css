@@ -3809,11 +3809,13 @@ input[type="button"].btn-block {
 	background: #ffffff;
 }
 
+/*
 .pagination:before,
 .pagination:after {
 	display: table;
 	content: ' ';
 }
+*/
 
 .pagination:after {
 	clear: both;
@@ -3828,7 +3830,8 @@ input[type="button"].btn-block {
 	border-right: 0;
 }
 
-.pagination > li > a {
+.pagination > li > a,
+.pagination > li > span {
 	display: block;
 	width: 30px;
 	height: 28px;
@@ -3842,10 +3845,26 @@ input[type="button"].btn-block {
 	color: #2aadde;
 }
 
-.pagination > li.active > a {
+.pagination > li.active > a,
+.pagination > li.active > span{
 	background: #efefef;
 	color: inherit;
 	cursor: default;
+}
+
+.pagination > li.fa-angle-left:before,
+.pagination > li.fa-angle-right:before {
+    content: "";
+}
+
+.pagination > li.fa-angle-left a:before,
+.pagination > li.fa-angle-left span:before {
+    content: "\f104";
+}
+
+.pagination > li.fa-angle-right a:before,
+.pagination > li.fa-angle-right span:before {
+    content: "\f105";
 }
 
 /* Bootstrap fix for GMaps */

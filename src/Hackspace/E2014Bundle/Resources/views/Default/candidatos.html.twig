@@ -45,19 +45,10 @@
                         <option value="">Ordenar Por:</option>
                         <option value="">Partido Político</option>
                         <option value="">Cargo</option>
+                        <option value="">Nombres</option>
                     </select>
 
-                    {# pagerfanta(candidatos, 'twitter_bootstrap3', pagerfanta_opts) #}
-
-                    <ul class="pagination pull-right">
-                        <li><a href="#" class="fa fa-angle-left"></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#" class="fa fa-angle-right"></a></li>
-                    </ul>
+                    {{ pagerfanta(candidatos, 'twitter_bootstrap3', pagerfanta_opts) }}
                 </div>
 
                 {%  for candidato in candidatos %}
@@ -199,15 +190,7 @@
 
 
                 <div class="clearfix">
-                    <ul class="pagination pull-right">
-                        <li><a href="#" class="fa fa-angle-left"></a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#" class="fa fa-angle-right"></a></li>
-                    </ul>
+                    {{ pagerfanta(candidatos, 'twitter_bootstrap3', pagerfanta_opts) }}
                 </div>
             </div> <!-- end .page-content -->
         </div>

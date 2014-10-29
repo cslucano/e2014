@@ -32,6 +32,11 @@ twig:
     globals:
         pagerfanta_opts:
             css_container_class : 'pagination pull-right'
+            prev_message: ''
+            next_message: ''
+            css_prev_class: 'fa fa-angle-left'
+            css_next_class: 'fa fa-angle-right'
+
 
 
 
