@@ -202,4 +202,532 @@ class EducacionSuperior
      * @ORM\Column(name="ano_final", type="integer", nullable=true)
      */
     private $ano_final;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCandidatoJneId()
+    {
+        return $this->candidato_jne_id;
+    }
+
+    /**
+     * @param int $candidato_jne_id
+     *
+     * @return $this
+     */
+    public function setCandidatoJneId($candidato_jne_id)
+    {
+        $this->candidato_jne_id = $candidato_jne_id;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFeMod()
+    {
+        return $this->fe_mod;
+    }
+
+    /**
+     * @param string $fe_mod
+     *
+     * @return $this
+     */
+    public function setFeMod($fe_mod)
+    {
+        $this->fe_mod = $fe_mod;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMesInicio()
+    {
+        return $this->mes_inicio;
+    }
+
+    /**
+     * @param int $mes_inicio
+     *
+     * @return $this
+     */
+    public function setMesInicio($mes_inicio)
+    {
+        $this->mes_inicio = $mes_inicio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * @param string $pais
+     *
+     * @return $this
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFgNoUniversitario()
+    {
+        return $this->fg_no_universitario;
+    }
+
+    /**
+     * @param string $fg_no_universitario
+     *
+     * @return $this
+     */
+    public function setFgNoUniversitario($fg_no_universitario)
+    {
+        $this->fg_no_universitario = $fg_no_universitario;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFgEstudioRealizado()
+    {
+        return $this->fg_estudio_realizado;
+    }
+
+    /**
+     * @param string $fg_estudio_realizado
+     *
+     * @return $this
+     */
+    public function setFgEstudioRealizado($fg_estudio_realizado)
+    {
+        $this->fg_estudio_realizado = $fg_estudio_realizado;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombreEstudio()
+    {
+        return $this->nombre_estudio;
+    }
+
+    /**
+     * @param string $nombre_estudio
+     *
+     * @return $this
+     */
+    public function setNombreEstudio($nombre_estudio)
+    {
+        $this->nombre_estudio = $nombre_estudio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLugarEstudio()
+    {
+        return $this->lugar_estudio;
+    }
+
+    /**
+     * @param string $lugar_estudio
+     *
+     * @return $this
+     */
+    public function setLugarEstudio($lugar_estudio)
+    {
+        $this->lugar_estudio = $lugar_estudio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFgEstado()
+    {
+        return $this->fg_estado;
+    }
+
+    /**
+     * @param string $fg_estado
+     *
+     * @return $this
+     */
+    public function setFgEstado($fg_estado)
+    {
+        $this->fg_estado = $fg_estado;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFgHastaActualidad()
+    {
+        return $this->fg_hasta_actualidad;
+    }
+
+    /**
+     * @param int $fg_hasta_actualidad
+     *
+     * @return $this
+     */
+    public function setFgHastaActualidad($fg_hasta_actualidad)
+    {
+        $this->fg_hasta_actualidad = $fg_hasta_actualidad;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAnoInicio()
+    {
+        return $this->ano_inicio;
+    }
+
+    /**
+     * @param int $ano_inicio
+     *
+     * @return $this
+     */
+    public function setAnoInicio($ano_inicio)
+    {
+        $this->ano_inicio = $ano_inicio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTipoDocumento()
+    {
+        return $this->tipo_documento;
+    }
+
+    /**
+     * @param string $tipo_documento
+     *
+     * @return $this
+     */
+    public function setTipoDocumento($tipo_documento)
+    {
+        $this->tipo_documento = $tipo_documento;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTipoPostgrado()
+    {
+        return $this->tipo_postgrado;
+    }
+
+    /**
+     * @param int $tipo_postgrado
+     *
+     * @return $this
+     */
+    public function setTipoPostgrado($tipo_postgrado)
+    {
+        $this->tipo_postgrado = $tipo_postgrado;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMesFinal()
+    {
+        return $this->mes_final;
+    }
+
+    /**
+     * @param int $mes_final
+     *
+     * @return $this
+     */
+    public function setMesFinal($mes_final)
+    {
+        $this->mes_final = $mes_final;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodAnr()
+    {
+        return $this->cod_anr;
+    }
+
+    /**
+     * @param string $cod_anr
+     *
+     * @return $this
+     */
+    public function setCodAnr($cod_anr)
+    {
+        $this->cod_anr = $cod_anr;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEli()
+    {
+        return $this->eli;
+    }
+
+    /**
+     * @param string $eli
+     *
+     * @return $this
+     */
+    public function setEli($eli)
+    {
+        $this->eli = $eli;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombreCentro()
+    {
+        return $this->nombre_centro;
+    }
+
+    /**
+     * @param string $nombre_centro
+     *
+     * @return $this
+     */
+    public function setNombreCentro($nombre_centro)
+    {
+        $this->nombre_centro = $nombre_centro;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCre()
+    {
+        return $this->cre;
+    }
+
+    /**
+     * @param string $cre
+     *
+     * @return $this
+     */
+    public function setCre($cre)
+    {
+        $this->cre = $cre;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTipoGrado()
+    {
+        return $this->tipo_grado;
+    }
+
+    /**
+     * @param string $tipo_grado
+     *
+     * @return $this
+     */
+    public function setTipoGrado($tipo_grado)
+    {
+        $this->tipo_grado = $tipo_grado;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFgExtrangero()
+    {
+        return $this->fg_extrangero;
+    }
+
+    /**
+     * @param string $fg_extrangero
+     *
+     * @return $this
+     */
+    public function setFgExtrangero($fg_extrangero)
+    {
+        $this->fg_extrangero = $fg_extrangero;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOtroTipoDocumento()
+    {
+        return $this->otro_tipo_documento;
+    }
+
+    /**
+     * @param string $otro_tipo_documento
+     *
+     * @return $this
+     */
+    public function setOtroTipoDocumento($otro_tipo_documento)
+    {
+        $this->otro_tipo_documento = $otro_tipo_documento;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombreCarrera()
+    {
+        return $this->nombre_carrera;
+    }
+
+    /**
+     * @param string $nombre_carrera
+     *
+     * @return $this
+     */
+    public function setNombreCarrera($nombre_carrera)
+    {
+        $this->nombre_carrera = $nombre_carrera;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOtroTipoGrado()
+    {
+        return $this->otro_tipo_grado;
+    }
+
+    /**
+     * @param string $otro_tipo_grado
+     *
+     * @return $this
+     */
+    public function setOtroTipoGrado($otro_tipo_grado)
+    {
+        $this->otro_tipo_grado = $otro_tipo_grado;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTipoEstudio()
+    {
+        return $this->tipo_estudio;
+    }
+
+    /**
+     * @param string $tipo_estudio
+     *
+     * @return $this
+     */
+    public function setTipoEstudio($tipo_estudio)
+    {
+        $this->tipo_estudio = $tipo_estudio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFgConcluido()
+    {
+        return $this->fg_concluido;
+    }
+
+    /**
+     * @param string $fg_concluido
+     *
+     * @return $this
+     */
+    public function setFgConcluido($fg_concluido)
+    {
+        $this->fg_concluido = $fg_concluido;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAnoFinal()
+    {
+        return $this->ano_final;
+    }
+
+    /**
+     * @param int $ano_final
+     *
+     * @return $this
+     */
+    public function setAnoFinal($ano_final)
+    {
+        $this->ano_final = $ano_final;
+
+        return $this;
+    }
 }
