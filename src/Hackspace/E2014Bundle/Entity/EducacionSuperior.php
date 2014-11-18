@@ -22,9 +22,14 @@ class EducacionSuperior
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Candidato", inversedBy="educacion_superior")
+     */
+    private $candidato;
+
+    /**
      * @var integer
      *
-     * @ORM\Column(name="candidato_jne_id", type="integer")
+     * @ORM\Column(name="candidato_jne_id", type="integer", nullable=true)
      */
     private $candidato_jne_id;
 
@@ -34,6 +39,13 @@ class EducacionSuperior
      * @ORM\Column(name="fe_mod", type="string", length=255, nullable=true)
      */
     private $fe_mod;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_educacion", type="integer", nullable=true)
+     */
+    private $id_educacion;
 
     /**
      * @var integer
@@ -204,6 +216,14 @@ class EducacionSuperior
     private $ano_final;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ubigeo", type="text", nullable=true)
+     */
+    private $ubigeo;
+
+
+    /**
      * @return int
      */
     public function getId()
@@ -247,6 +267,26 @@ class EducacionSuperior
     public function setFeMod($fe_mod)
     {
         $this->fe_mod = $fe_mod;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdEducacion()
+    {
+        return $this->id_educacion;
+    }
+
+    /**
+     * @param int $id_educacion
+     *
+     * @return $this
+     */
+    public function setIdEducacion($id_educacion)
+    {
+        $this->id_educacion = $id_educacion;
 
         return $this;
     }
@@ -727,6 +767,26 @@ class EducacionSuperior
     public function setAnoFinal($ano_final)
     {
         $this->ano_final = $ano_final;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUbigeo()
+    {
+        return $this->ubigeo;
+    }
+
+    /**
+     * @param string $ubigeo
+     *
+     * @return $this
+     */
+    public function setUbigeo($ubigeo)
+    {
+        $this->ubigeo = $ubigeo;
 
         return $this;
     }

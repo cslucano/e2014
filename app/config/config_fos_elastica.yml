@@ -54,6 +54,37 @@ fos_elastica:
                             ubigeo_dep: ~
                             ubigeo_pro: ~
                             ubigeo_dis: ~
+                        educacion_superior:
+                          type: "nested"
+                          properties:
+                            candidato_jne_id: ~
+                            fe_mod: ~
+                            id_educacion: ~
+                            mes_inicio: ~
+                            pais: ~
+                            fg_no_universitario: ~
+                            fg_estudio_realizado: ~
+                            nombre_estudio: ~
+                            lugar_estudio: ~
+                            fg_estado: ~
+                            fg_hasta_actualidad: ~
+                            ano_inicio: ~
+                            tipo_documento: ~
+                            tipo_postgrado: ~
+                            mes_final: ~
+                            cod_anr: ~
+                            eli: ~
+                            nombre_centro: ~
+                            cre: ~
+                            tipo_grado: ~
+                            fg_extrangero: ~
+                            otro_tipo_documento: ~
+                            nombre_carrera: ~
+                            otro_tipo_grado: ~
+                            tipo_estudio: ~
+                            fg_concluido: ~
+                            ano_final: ~
+                            ubigeo: ~
                     persistence:
                         driver: orm
                         model: Hackspace\E2014Bundle\Entity\Candidato

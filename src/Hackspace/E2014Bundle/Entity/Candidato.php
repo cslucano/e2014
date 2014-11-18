@@ -2,6 +2,7 @@
 
 namespace Hackspace\E2014Bundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
@@ -237,6 +238,16 @@ class Candidato implements JsonSerializable
      * @ORM\JoinColumn(name="postula_ubigeo_id", referencedColumnName="id")
      */
     private $postula_ubigeo_e;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EducacionSuperior", mappedBy="candidato")
+     */
+    public $educacion_superior;
+
+    function __construct()
+    {
+        $this->educacion_superior = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -1005,4 +1016,21 @@ class Candidato implements JsonSerializable
     {
        return $this->candidato_jne_id . '.jpg';
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEducacionSuperior()
+    {
+        return $this->educacion_superior;
+    }
+
+    /**
+     * @param mixed $educacion_superior
+     */
+    public function setEducacionSuperior($educacion_superior)
+    {
+        $this->educacion_superior = $educacion_superior;
+    }
+
 }
