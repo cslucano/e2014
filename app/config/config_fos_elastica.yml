@@ -55,7 +55,7 @@ fos_elastica:
                             ubigeo_pro: ~
                             ubigeo_dis: ~
                         educacion_superior:
-                          type: "nested"
+                          type: "object"
                           properties:
                             candidato_jne_id: ~
                             fe_mod: ~

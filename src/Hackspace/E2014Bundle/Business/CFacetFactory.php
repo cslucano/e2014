@@ -49,6 +49,10 @@ class CFacetFactory
 //
 //        $cFacet = new CFacet(CFacet::TERMS, 'candidato.residencia_tiempo', 'Tiempo de Residencia', 'residencia_tiempo');
 //        $this->facets['candidato.residencia_tiempo'] = $cFacet;
+
+        $cFacet = new CFacet(CFacet::TERMS, 'candidato.educacion_superior', 'Educación Superior', 'educacion_superior.nombre_estudio');
+        $this->facets['candidato.educacion_superior'] = $cFacet;
+
     }
 
     /**
