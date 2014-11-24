@@ -50,15 +50,15 @@ class CFacetFactory
 //        $cFacet = new CFacet(CFacet::TERMS, 'candidato.residencia_tiempo', 'Tiempo de Residencia', 'residencia_tiempo');
 //        $this->facets['candidato.residencia_tiempo'] = $cFacet;
 
-//        $cFacet = new CFacet(CFacet::TERMS, 'candidato.nombre_estudio', 'Estudio', 'educacion_superior.nombre_estudio');
-//        $this->facets['candidato.educacion_superior'] = $cFacet;
-//
-//        $cFacet = new CFacet(CFacet::TERMS, 'candidato.nombre_centro', 'Educación Superior', 'educacion_superior.nombre_estudio');
-//        $this->facets['candidato.educacion_superior'] = $cFacet;
-//
-//        $cFacet = new CFacet(CFacet::TERMS, 'candidato.educacion_superior', 'Educación Superior', 'educacion_superior.nombre_estudio');
-//        $this->facets['candidato.educacion_superior'] = $cFacet;
-//
+        $cFacet = new CFacet(CFacet::TERMS, 'candidato.educacion_superior.nombre_estudio', 'Estudio Superior', 'educacion_superior.nombre_estudio');
+        $this->facets['candidato.educacion_superior.nombre_estudio'] = $cFacet;
+
+        $cFacet = new CFacet(CFacet::TERMS, 'candidato.educacion_superior.nombre_centro', 'Centro de Estudio Superior', 'educacion_superior.nombre_centro');
+        $this->facets['candidato.educacion_superior.nombre_centro'] = $cFacet;
+
+        $cFacet = new CFacet(CFacet::TERMS, 'candidato.educacion_superior.nombre_carrera', 'Carrera de Estudio Superior', 'educacion_superior.nombre_carrera');
+        $this->facets['candidato.educacion_superior.nombre_carrera'] = $cFacet;
+
     }
 
     /**
