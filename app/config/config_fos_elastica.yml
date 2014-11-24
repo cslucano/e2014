@@ -64,7 +64,7 @@ fos_elastica:
                             pais: ~
                             fg_no_universitario: ~
                             fg_estudio_realizado: ~
-                            nombre_estudio: ~
+                            nombre_estudio: { analyzer : comma }
                             lugar_estudio: ~
                             fg_estado: ~
                             fg_hasta_actualidad: ~
@@ -74,12 +74,12 @@ fos_elastica:
                             mes_final: ~
                             cod_anr: ~
                             eli: ~
-                            nombre_centro: ~
+                            nombre_centro: { analyzer : comma }
                             cre: ~
                             tipo_grado: ~
                             fg_extrangero: ~
                             otro_tipo_documento: ~
-                            nombre_carrera: ~
+                            nombre_carrera: { analyzer : comma }
                             otro_tipo_grado: ~
                             tipo_estudio: ~
                             fg_concluido: ~
